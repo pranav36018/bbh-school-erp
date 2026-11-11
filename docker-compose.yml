@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  # Primary PostgreSQL Database Server
+  postgres:
+    image: postgres:16-alpine
+    container_name: school_erp_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-school_erp}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # School ERP Web Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: school_erp_app
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/school_erp?schema=public
+      JWT_SECRET: ${JWT_SECRET:-unified-school-erp-super-secure-jwt-key-2026-production}
+      COOKIE_SECRET: ${COOKIE_SECRET:-unified-school-erp-secure-cookie-secret-key-32chars}
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+    volumes:
+      - app_uploads:/app/public/uploads
+
+volumes:
+  postgres_data:
+    driver: local
+  app_uploads:
+    driver: local
