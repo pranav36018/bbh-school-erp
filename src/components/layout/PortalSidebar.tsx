@@ -27,6 +27,12 @@ import {
   QrCode,
   DollarSign,
   Compass,
+  Package,
+  ShieldCheck,
+  UserCheck,
+  Home,
+  Star,
+  BookMarked,
 } from "lucide-react";
 import { PortalType } from "@/lib/types";
 
@@ -60,17 +66,25 @@ export default function PortalSidebar({ portal }: PortalSidebarProps) {
           { name: "Exams & Report Cards", href: "/admin/examinations", icon: Award },
           { name: "Fee Management & UPI", href: "/admin/fees", icon: CreditCard },
           { name: "Timetable & AI Engine", href: "/admin/timetable", icon: Calendar, badge: "AI" },
+          { name: "Faculty Substitution", href: "/admin/substitution", icon: UserCheck, badge: "Smart" },
+          { name: "Visitor & Gate Pass", href: "/admin/visitors", icon: ShieldCheck, badge: "Security" },
+          { name: "Store & Inventory", href: "/admin/inventory", icon: Package },
+          { name: "Hostel Management", href: "/admin/hostel", icon: Home },
           { name: "Notices & Broadcasts", href: "/admin/communication", icon: MessageSquare },
           { name: "Operations & Transport", href: "/admin/operations", icon: Bus },
         ];
       case "teacher":
         return [
           { name: "Teacher Dashboard", href: "/teacher/dashboard", icon: LayoutDashboard },
+          { name: "School Bus & Transit", href: "/teacher/transport", icon: Bus, badge: "Live GPS" },
+          { name: "Daily Class Diary", href: "/teacher/diary", icon: BookMarked, badge: "Today" },
           { name: "Mark Attendance", href: "/teacher/attendance", icon: CheckSquare },
           { name: "Marks & Assessments", href: "/teacher/marks", icon: Award },
+          { name: "Merit & Discipline", href: "/teacher/discipline", icon: Star },
           { name: "AI Lesson Plans", href: "/teacher/lesson-plans", icon: Sparkles, badge: "AI" },
           { name: "AI Question Paper", href: "/teacher/question-paper", icon: FileText, badge: "AI" },
           { name: "Homework & Notes", href: "/teacher/assignments", icon: BookOpen },
+          { name: "Campus Calendar", href: "/teacher/calendar", icon: Calendar },
           { name: "Leave Management", href: "/teacher/leaves", icon: Clock },
         ];
       case "student":
@@ -78,11 +92,13 @@ export default function PortalSidebar({ portal }: PortalSidebarProps) {
           { name: "Student Dashboard", href: "/student/dashboard", icon: LayoutDashboard },
           { name: "Digital ID Card", href: "/student/profile", icon: QrCode },
           { name: "School Bus & GPS", href: "/student/transport", icon: Bus, badge: "Live GPS" },
+          { name: "Daily Class Diary", href: "/student/diary", icon: BookMarked, badge: "Today" },
           { name: "Class Timetable", href: "/student/timetable", icon: Calendar },
           { name: "Attendance Records", href: "/student/attendance", icon: CheckSquare },
           { name: "Exam Results & Report", href: "/student/academics", icon: Award },
           { name: "Fee Ledger & Pay UPI", href: "/student/fees", icon: CreditCard },
           { name: "Homework & Studies", href: "/student/homework", icon: BookOpen },
+          { name: "Campus Calendar", href: "/student/calendar", icon: Calendar },
           { name: "Library Books", href: "/student/library", icon: FileCheck },
         ];
     }

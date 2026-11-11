@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import PortalLayout from "@/components/layout/PortalLayout";
 import {
   BookOpen,
@@ -14,10 +15,30 @@ import {
   ArrowRight,
   FileText,
   CheckCircle2,
+  Bus,
+  MapPin,
+  ShieldCheck,
+  Radio,
+  BookMarked,
+  Star,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { DEMO_TIMETABLE_TODAY, DEMO_STUDENTS, DEMO_ANNOUNCEMENTS } from "@/lib/mock-data";
 
+const LiveBusMap = dynamic(() => import("@/components/transport/LiveBusMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[360px] bg-slate-900 rounded-2xl flex flex-col items-center justify-center text-slate-300 gap-3 border border-slate-800">
+      <div className="w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+      <span className="text-xs font-semibold">Initializing AIS-140 OpenStreetMap Transit Feed...</span>
+    </div>
+  ),
+});
+
 export default function TeacherDashboard() {
+  const [showMap, setShowMap] = useState(false);
+
   return (
     <PortalLayout
       portal="teacher"
@@ -194,6 +215,39 @@ export default function TeacherDashboard() {
             </Link>
 
             <Link
+              href="/teacher/diary"
+              className="p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 flex items-center justify-between transition-all"
+            >
+              <div className="flex items-center gap-2.5">
+                <BookMarked className="w-4 h-4 text-blue-600" />
+                <span className="font-semibold text-slate-800">Daily Class Diary (Edubricz)</span>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
+            </Link>
+
+            <Link
+              href="/teacher/transport"
+              className="p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-amber-400 hover:bg-amber-50/50 flex items-center justify-between transition-all"
+            >
+              <div className="flex items-center gap-2.5">
+                <Bus className="w-4 h-4 text-amber-600" />
+                <span className="font-semibold text-slate-800">Bus Fleet & Live GPS</span>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
+            </Link>
+
+            <Link
+              href="/teacher/discipline"
+              className="p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-purple-400 hover:bg-purple-50/50 flex items-center justify-between transition-all"
+            >
+              <div className="flex items-center gap-2.5">
+                <Star className="w-4 h-4 text-purple-600" />
+                <span className="font-semibold text-slate-800">Student 360 & Discipline</span>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
+            </Link>
+
+            <Link
               href="/teacher/leaves"
               className="p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/50 flex items-center justify-between transition-all"
             >
@@ -205,6 +259,133 @@ export default function TeacherDashboard() {
             </Link>
           </div>
         </div>
+      </div>
+
+      {/* Live School Bus Fleet & Transit Radar for Teachers */}
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 mb-5">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold">
+              <Bus className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="text-base font-bold text-slate-900">School Bus Transit & Arrival Radar</h2>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                  AIS-140 GPS
+                </span>
+              </div>
+              <p className="text-xs text-slate-500">Live GPS tracking for 10-A student transit routes & campus gate ETA</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowMap(!showMap)}
+              className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-xl transition-all flex items-center gap-1.5"
+            >
+              <MapPin className="w-3.5 h-3.5 text-amber-400" />
+              <span>{showMap ? "Collapse Live Map" : "Open Interactive OpenStreetMap"}</span>
+              {showMap ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+            </button>
+            <Link
+              href="/teacher/transport"
+              className="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs rounded-xl transition-all flex items-center gap-1"
+            >
+              <span>Full Transit Desk</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Live Route Status Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <div className="flex items-center justify-between mb-2">
+              <span className="font-extrabold text-sm text-slate-900">Bus #14 (Sahakarnagar Express)</span>
+              <span className="text-[10px] font-mono px-2 py-0.5 bg-amber-100 text-amber-800 font-bold rounded">
+                KA-01-AB-1234
+              </span>
+            </div>
+            <div className="space-y-1 text-xs text-slate-600">
+              <div className="flex justify-between">
+                <span>Driver: <strong>Somanna Gowda</strong></span>
+                <span className="text-emerald-600 font-bold">36 km/h</span>
+              </div>
+              <div className="flex justify-between">
+                <span>ETA to Campus Gate 2:</span>
+                <strong className="text-blue-700 font-extrabold">7 Mins</strong>
+              </div>
+              <div className="flex justify-between text-[11px] text-slate-500 pt-1 border-t">
+                <span>Class 10-A Students:</span>
+                <span className="font-semibold text-slate-700">Aarav, Diya (2 Boarded)</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <div className="flex items-center justify-between mb-2">
+              <span className="font-extrabold text-sm text-slate-900">Bus #21 (Thanisandra / Manyata)</span>
+              <span className="text-[10px] font-mono px-2 py-0.5 bg-blue-100 text-blue-800 font-bold rounded">
+                KA-01-CD-5678
+              </span>
+            </div>
+            <div className="space-y-1 text-xs text-slate-600">
+              <div className="flex justify-between">
+                <span>Driver: <strong>Manjunath K</strong></span>
+                <span className="text-emerald-600 font-bold">28 km/h</span>
+              </div>
+              <div className="flex justify-between">
+                <span>ETA to Campus Gate 2:</span>
+                <strong className="text-emerald-600 font-extrabold">Inside Geofence (3 Mins)</strong>
+              </div>
+              <div className="flex justify-between text-[11px] text-slate-500 pt-1 border-t">
+                <span>Class 10-A Students:</span>
+                <span className="font-semibold text-slate-700">Ananya Iyer (1 Boarded)</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <div className="flex items-center justify-between mb-2">
+              <span className="font-extrabold text-sm text-slate-900">Bus #08 (Jakkur Airfield)</span>
+              <span className="text-[10px] font-mono px-2 py-0.5 bg-slate-200 text-slate-800 font-bold rounded">
+                KA-01-EF-9012
+              </span>
+            </div>
+            <div className="space-y-1 text-xs text-slate-600">
+              <div className="flex justify-between">
+                <span>Driver: <strong>Ramesh Babu</strong></span>
+                <span className="text-emerald-600 font-bold">32 km/h</span>
+              </div>
+              <div className="flex justify-between">
+                <span>ETA to Campus Gate 2:</span>
+                <strong className="text-slate-700 font-extrabold">14 Mins</strong>
+              </div>
+              <div className="flex justify-between text-[11px] text-slate-500 pt-1 border-t">
+                <span>Class 10-A Students:</span>
+                <span className="font-semibold text-slate-700">Rohan (Private Drop)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Collapsible Interactive Leaflet OpenStreetMap */}
+        {showMap && (
+          <div className="mt-4 pt-4 border-t border-slate-100">
+            <LiveBusMap
+              busNumber="Bus #14"
+              vehicleNumber="KA-01-AB-1234"
+              driverName="Somanna Gowda"
+              driverPhone="+91 98450 33441"
+              pickupStopName="DPS Bengaluru North Gate 2"
+              pickupStopCoords={[13.1205, 77.6180]}
+              initialBusCoords={[13.0924, 77.5976]}
+              studentName="Class 10-A Bus Batch"
+            />
+          </div>
+        )}
       </div>
     </PortalLayout>
   );
