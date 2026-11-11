@@ -1,7 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import PortalLayout from "@/components/layout/PortalLayout";
+
+const LiveBusMap = dynamic(() => import("@/components/transport/LiveBusMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[450px] bg-slate-900 rounded-2xl flex flex-col items-center justify-center text-slate-300 gap-3 border border-slate-800">
+      <div className="w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+      <span className="text-xs font-semibold">Initializing AIS-140 OpenStreetMap Feed...</span>
+    </div>
+  ),
+});
 import {
   Bus,
   MapPin,
@@ -207,24 +218,46 @@ export default function StudentTransportPage() {
               </div>
             </div>
 
-            {/* Simulated Live Route Map & Bus Position Visualizer */}
-            <div className="p-6 bg-slate-50/70 border-b">
+            {/* Interactive Leaflet OpenStreetMap Live Tracking */}
+            <div className="p-4 sm:p-6 bg-slate-50/50 border-b">
+              <div className="mb-4">
+                <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+                  <Navigation className="w-4 h-4 text-blue-600" />
+                  <span>Real-Time GIS Satellite Road Tracking</span>
+                </h3>
+                <p className="text-xs text-slate-500">
+                  Interactive OpenStreetMap with live bus telemetry, Bellary Road NH-44 waypoints, and 600m geofence detection.
+                </p>
+              </div>
+
+              <LiveBusMap
+                busNumber={transport.busNumber || "Bus #14"}
+                vehicleNumber={transport.vehicleNumber || "KA-01-AB-1234"}
+                driverName={transport.driverName || "Somanna Gowda"}
+                driverPhone={transport.driverPhone || "+91 98450 33441"}
+                pickupStopName={transport.pickupStop || "Sahakarnagar Main Signal"}
+                pickupStopCoords={[13.0632, 77.5898]}
+                initialBusCoords={[liveLocation.latitude, liveLocation.longitude]}
+                studentName={student.fullName}
+              />
+            </div>
+
+            {/* Scheduled Route Stops Timeline */}
+            <div className="p-4 sm:p-6 bg-white border-b">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
-                    <Navigation className="w-4 h-4 text-blue-600" />
-                    <span>Real-Time Route Progress Map</span>
-                  </h3>
-                  <p className="text-xs text-slate-500">Visual position along Route 14 corridor</p>
+                  <h4 className="font-bold text-slate-900 text-xs flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-slate-600" />
+                    <span>Scheduled Route Stops Timeline</span>
+                  </h4>
+                  <p className="text-[11px] text-slate-500">Sequential checkpoints along Route 14 corridor</p>
                 </div>
-                <span className="text-xs font-mono text-slate-600 bg-white px-2.5 py-1 rounded-md border">
-                  GPS: {liveLocation.latitude}° N, {liveLocation.longitude}° E
+                <span className="text-xs font-mono text-slate-600 bg-slate-50 px-2.5 py-1 rounded-md border">
+                  Total 5 Designated Stops
                 </span>
               </div>
 
-              {/* Graphic Route Highway Visualizer */}
-              <div className="relative bg-white rounded-2xl border p-6 shadow-inner">
-                {/* Simulated Road Line */}
+              <div className="relative bg-slate-50/70 rounded-2xl border p-6">
                 <div className="relative flex flex-col md:flex-row items-center justify-between gap-6 md:gap-2">
                   <div className="absolute top-1/2 left-4 right-4 h-1.5 bg-slate-200 -translate-y-1/2 hidden md:block"></div>
 
@@ -261,24 +294,6 @@ export default function StudentTransportPage() {
                       </div>
                     );
                   })}
-                </div>
-
-                {/* Live Bus Moving Indicator Callout */}
-                <div className="mt-8 p-3 rounded-xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center font-bold">
-                      <Bus className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="font-bold text-slate-900">Current Real-Time Location:</span>
-                      <p className="text-slate-600 text-[11px]">{liveLocation.locationName}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-700 font-bold">Speed: {liveLocation.speed} km/h</span>
-                    <span className="text-slate-400">•</span>
-                    <span className="text-emerald-700 font-bold">{liveLocation.eta} min away from your stop</span>
-                  </div>
                 </div>
               </div>
             </div>
