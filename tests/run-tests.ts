@@ -135,8 +135,23 @@ async function runTests() {
   });
   assert(atRiskAssessment.riskLevel === "HIGH" && atRiskAssessment.indicators.length > 0, "AI Early Warning correctly identifies at-risk academic indicators");
 
-  // 8. Health Check Verification
-  console.log("\n--- 6. System Health & Environment ---");
+  // 8. Transport & Live Bus GPS Engine
+  console.log("\n--- 6. Transport & Live Bus GPS Telemetry ---");
+  const busStudent = DEMO_STUDENTS.find((s) => s.transport.opted);
+  const nonBusStudent = DEMO_STUDENTS.find((s) => !s.transport.opted);
+  assert(busStudent !== undefined && busStudent.transport.opted === true, "Student bus enrollment identified (transport.opted = true)");
+  assert(
+    Boolean(
+      busStudent?.transport.vehicleNumber?.startsWith("KA-") &&
+      busStudent?.transport.latitude !== undefined &&
+      busStudent?.transport.longitude !== undefined
+    ),
+    `Live GPS vehicle tracking coordinates active (${busStudent?.transport.vehicleNumber}: ${busStudent?.transport.latitude}, ${busStudent?.transport.longitude})`
+  );
+  assert(nonBusStudent !== undefined && nonBusStudent.transport.opted === false, "Private drop / non-bus student handled cleanly (opted = false)");
+
+  // 9. Health Check Verification
+  console.log("\n--- 7. System Health & Environment ---");
   assert(DEMO_INSTITUTIONS.length === 3, "Demo institutions loaded (2 CBSE + 1 State Board)");
   assert(DEMO_USERS.length >= 10, "Demo user roster populated with all 4 portal roles");
   assert(DEMO_STUDENTS.length >= 5, "Demo student records populated with marks and fee ledgers");

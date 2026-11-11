@@ -77,6 +77,7 @@ export default function PortalSidebar({ portal }: PortalSidebarProps) {
         return [
           { name: "Student Dashboard", href: "/student/dashboard", icon: LayoutDashboard },
           { name: "Digital ID Card", href: "/student/profile", icon: QrCode },
+          { name: "School Bus & GPS", href: "/student/transport", icon: Bus, badge: "Live GPS" },
           { name: "Class Timetable", href: "/student/timetable", icon: Calendar },
           { name: "Attendance Records", href: "/student/attendance", icon: CheckSquare },
           { name: "Exam Results & Report", href: "/student/academics", icon: Award },

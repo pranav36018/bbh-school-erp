@@ -15,10 +15,17 @@ import {
   CheckCircle2,
   Clock,
   Sparkles,
+  Bus,
+  MapPin,
+  Phone,
+  Radio,
 } from "lucide-react";
-import { DEMO_TIMETABLE_TODAY, DEMO_ANNOUNCEMENTS } from "@/lib/mock-data";
+import { DEMO_TIMETABLE_TODAY, DEMO_ANNOUNCEMENTS, DEMO_STUDENTS } from "@/lib/mock-data";
 
 export default function StudentDashboard() {
+  const currentStudent = DEMO_STUDENTS[0]; // Aarav Kashyap
+  const transport = currentStudent.transport;
+
   return (
     <PortalLayout
       portal="student"
@@ -43,7 +50,16 @@ export default function StudentDashboard() {
             </p>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
+            {transport?.opted && (
+              <Link
+                href="/student/transport"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-md transition-all"
+              >
+                <Bus className="w-4 h-4 text-slate-950" />
+                <span>Track School Bus (Live)</span>
+              </Link>
+            )}
             <Link
               href="/student/profile"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-blue-900 font-bold text-xs shadow-md hover:bg-blue-50 transition-all"
@@ -54,6 +70,65 @@ export default function StudentDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Live School Bus Location Widget (When Opted) */}
+      {transport?.opted ? (
+        <div className="bg-white rounded-2xl border-2 border-amber-400/40 p-5 shadow-sm overflow-hidden relative">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex items-start gap-3.5">
+              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0 border border-amber-500/30">
+                <Bus className="w-6 h-6" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    LIVE GPS • EN ROUTE
+                  </span>
+                  <span className="text-xs font-mono font-bold text-slate-800">{transport.vehicleNumber} ({transport.busNumber})</span>
+                </div>
+                <h3 className="text-base font-extrabold text-slate-900 mt-1">
+                  {transport.routeName}
+                </h3>
+                <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600 mt-1">
+                  <span className="flex items-center gap-1 font-medium">
+                    <MapPin className="w-3.5 h-3.5 text-red-500" />
+                    Current: <strong>{transport.currentLocationName}</strong>
+                  </span>
+                  <span>•</span>
+                  <span>Your Stop: <strong>{transport.pickupStop}</strong></span>
+                  <span>•</span>
+                  <span>Speed: <strong className="text-emerald-700">{transport.speedKmh} km/h</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 self-end md:self-center shrink-0">
+              <div className="text-right">
+                <span className="text-xl font-extrabold text-amber-600 block">{transport.etaMinutes} Mins</span>
+                <span className="text-[10px] text-slate-400 font-semibold">Estimated Arrival</span>
+              </div>
+              <Link
+                href="/student/transport"
+                className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-sm transition-all"
+              >
+                <span>Live Map View</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="bg-slate-50 border border-slate-200 p-4 rounded-2xl flex items-center justify-between text-xs text-slate-600">
+          <div className="flex items-center gap-3">
+            <Bus className="w-5 h-5 text-slate-400" />
+            <span>School Bus Transport is currently <strong>Not Opted</strong> for this student.</span>
+          </div>
+          <Link href="/student/transport" className="font-semibold text-blue-600 hover:underline">
+            Opt-In for Bus Route →
+          </Link>
+        </div>
+      )}
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

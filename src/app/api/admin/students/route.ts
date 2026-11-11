@@ -49,6 +49,10 @@ export async function POST(req: NextRequest) {
       overallGrade: "A1",
       feeStatus: "PENDING" as const,
       feeBalance: 125000,
+      transport: body.transport || {
+        opted: false,
+        mode: "PRIVATE_PICKUP" as const,
+      },
     };
 
     DEMO_STUDENTS.push(newStudent);

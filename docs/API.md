@@ -114,5 +114,33 @@ Verifies cryptographic QR payloads from report cards, Bonafide certificates, and
   - `200 OK`: Valid HMAC-SHA256 signature, decodes issuance payload.
   - `400 Bad Request`: Signature mismatch (tampering detected).
 
+#### `GET /api/student/transport`
+Retrieves live bus GPS telemetry, route stop progress, driver details, and AIS-140 compliance status for students who opted for school bus transport.
+- **Query Params**: `studentId` (defaults to authenticated student if omitted)
+- **Responses**:
+  - `200 OK`:
+    ```json
+    {
+      "success": true,
+      "transport": {
+        "opted": true,
+        "mode": "BUS",
+        "routeNumber": "Route 14 - Sahakarnagar Express",
+        "vehicleNumber": "KA-01-AB-1234",
+        "driverName": "Somanna Gowda",
+        "driverPhone": "+91 98451 23456",
+        "currentLocation": {
+          "latitude": 13.0924,
+          "longitude": 77.5976,
+          "speedKmH": 34,
+          "etaMinutes": 12,
+          "lastUpdated": "2026-11-11T09:30:00.000Z"
+        },
+        "ais140Compliant": true,
+        "stops": [ ... ]
+      }
+    }
+    ```
+
 #### `GET /api/health`
 Probes platform uptime, database status, and memory metrics.

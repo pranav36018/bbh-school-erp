@@ -345,6 +345,28 @@ export const DEMO_USERS: DemoUser[] = [
   },
 ];
 
+export interface DemoStudentTransport {
+  opted: boolean;
+  routeId?: string;
+  routeName?: string;
+  vehicleNumber?: string;
+  busNumber?: string;
+  pickupStop?: string;
+  pickupTime?: string;
+  dropTime?: string;
+  driverName?: string;
+  driverPhone?: string;
+  attendantName?: string;
+  attendantPhone?: string;
+  gpsTrackingId?: string;
+  currentLocationName?: string;
+  latitude?: number;
+  longitude?: number;
+  speedKmh?: number;
+  etaMinutes?: number;
+  status?: "ON_ROUTE" | "REACHED_SCHOOL" | "EVENING_DROP" | "PARKED";
+}
+
 export interface DemoStudentDetail {
   id: string;
   humanId: string;
@@ -364,6 +386,7 @@ export interface DemoStudentDetail {
   overallGrade: string;
   feeStatus: "PAID" | "PENDING" | "PARTIAL";
   feeBalance: number;
+  transport: DemoStudentTransport;
 }
 
 export const DEMO_STUDENTS: DemoStudentDetail[] = [
@@ -386,6 +409,27 @@ export const DEMO_STUDENTS: DemoStudentDetail[] = [
     overallGrade: "A1",
     feeStatus: "PAID",
     feeBalance: 0,
+    transport: {
+      opted: true,
+      routeId: "route-14",
+      routeName: "Route 14 - Hebbal to Yelahanka Main Campus",
+      vehicleNumber: "KA-01-AB-1234",
+      busNumber: "Bus #14",
+      pickupStop: "Sahakarnagar Main Signal (Stop 2)",
+      pickupTime: "07:45 AM",
+      dropTime: "03:45 PM",
+      driverName: "Somanna Gowda",
+      driverPhone: "+91 98450 33441",
+      attendantName: "Rukmini Bai",
+      attendantPhone: "+91 98450 33449",
+      gpsTrackingId: "AIS140-GPS-KA01AB1234",
+      currentLocationName: "Near Kogilu Junction Flyover (1.4 km from campus)",
+      latitude: 13.0924,
+      longitude: 77.5976,
+      speedKmh: 36,
+      etaMinutes: 7,
+      status: "ON_ROUTE",
+    },
   },
   {
     id: "stu-002",
@@ -406,6 +450,27 @@ export const DEMO_STUDENTS: DemoStudentDetail[] = [
     overallGrade: "A1",
     feeStatus: "PAID",
     feeBalance: 0,
+    transport: {
+      opted: true,
+      routeId: "route-14",
+      routeName: "Route 14 - Hebbal to Yelahanka Main Campus",
+      vehicleNumber: "KA-01-AB-1234",
+      busNumber: "Bus #14",
+      pickupStop: "Hebbal Baptist Hospital Stop (Stop 1)",
+      pickupTime: "07:30 AM",
+      dropTime: "04:00 PM",
+      driverName: "Somanna Gowda",
+      driverPhone: "+91 98450 33441",
+      attendantName: "Rukmini Bai",
+      attendantPhone: "+91 98450 33449",
+      gpsTrackingId: "AIS140-GPS-KA01AB1234",
+      currentLocationName: "Near Kogilu Junction Flyover (1.4 km from campus)",
+      latitude: 13.0924,
+      longitude: 77.5976,
+      speedKmh: 36,
+      etaMinutes: 7,
+      status: "ON_ROUTE",
+    },
   },
   {
     id: "stu-003",
@@ -426,6 +491,9 @@ export const DEMO_STUDENTS: DemoStudentDetail[] = [
     overallGrade: "B1",
     feeStatus: "PARTIAL",
     feeBalance: 14500,
+    transport: {
+      opted: false, // Private pickup / Parent drop
+    },
   },
   {
     id: "stu-004",
@@ -446,6 +514,27 @@ export const DEMO_STUDENTS: DemoStudentDetail[] = [
     overallGrade: "A2",
     feeStatus: "PAID",
     feeBalance: 0,
+    transport: {
+      opted: true,
+      routeId: "route-21",
+      routeName: "Route 21 - Manyata Tech Park to Campus",
+      vehicleNumber: "KA-01-EF-5678",
+      busNumber: "Bus #21",
+      pickupStop: "Thanisandra Main Road",
+      pickupTime: "07:35 AM",
+      dropTime: "03:55 PM",
+      driverName: "Manjunath K",
+      driverPhone: "+91 98450 33442",
+      attendantName: "Sunanda Devi",
+      attendantPhone: "+91 98450 33450",
+      gpsTrackingId: "AIS140-GPS-KA01EF5678",
+      currentLocationName: "Jakkur Double Road",
+      latitude: 13.0782,
+      longitude: 77.6045,
+      speedKmh: 32,
+      etaMinutes: 12,
+      status: "ON_ROUTE",
+    },
   },
   {
     id: "stu-005",
@@ -466,6 +555,9 @@ export const DEMO_STUDENTS: DemoStudentDetail[] = [
     overallGrade: "C1",
     feeStatus: "PENDING",
     feeBalance: 42000,
+    transport: {
+      opted: false,
+    },
   },
 ];
 
