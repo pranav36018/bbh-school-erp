@@ -19,6 +19,9 @@ import {
   MapPin,
   Phone,
   Radio,
+  Brain,
+  Zap,
+  Gamepad2,
 } from "lucide-react";
 import { DEMO_TIMETABLE_TODAY, DEMO_ANNOUNCEMENTS, DEMO_STUDENTS } from "@/lib/mock-data";
 
@@ -167,6 +170,38 @@ export default function StudentDashboard() {
           </div>
           <span className="text-[11px] text-slate-400 mt-1 block">Mathematics: Quadratic Equations Ex 4.3</span>
         </div>
+      </div>
+
+      {/* Daily Mind Sparks Arena (3 Mind Games) */}
+      <div className="bg-gradient-to-r from-indigo-900 via-slate-900 to-indigo-950 rounded-2xl p-6 text-white border border-indigo-800 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-black shrink-0 shadow-lg">
+            <Brain className="w-6 h-6" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-amber-400 text-slate-950">
+                Cognitive Workout
+              </span>
+              <span className="text-xs text-indigo-300 font-mono">Daily Brain Spark</span>
+            </div>
+            <h3 className="text-base font-extrabold text-white mt-0.5">
+              Sharpen Your Critical Thinking with 3 Mind Games
+            </h3>
+            <p className="text-xs text-slate-300 mt-1">
+              Play <strong>Vedic Math Blitz</strong> (speed math), <strong>Logic Word Cipher</strong> (deduction), and <strong>Matrix Memory Recall</strong> (spatial span).
+            </p>
+          </div>
+        </div>
+
+        <Link
+          href="/student/games"
+          className="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black text-xs shadow-md transition-all flex items-center gap-2 shrink-0"
+        >
+          <Gamepad2 className="w-4 h-4" />
+          <span>Play Mind Games</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
       </div>
 
       {/* Main Grid: Today's Schedule + School Announcements */}

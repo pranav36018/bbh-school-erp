@@ -33,6 +33,8 @@ import {
   Home,
   Star,
   BookMarked,
+  Brain,
+  Gamepad2,
 } from "lucide-react";
 import { PortalType } from "@/lib/types";
 
@@ -93,6 +95,7 @@ export default function PortalSidebar({ portal }: PortalSidebarProps) {
           { name: "Digital ID Card", href: "/student/profile", icon: QrCode },
           { name: "School Bus & GPS", href: "/student/transport", icon: Bus, badge: "Live GPS" },
           { name: "Daily Class Diary", href: "/student/diary", icon: BookMarked, badge: "Today" },
+          { name: "Mind Games & Logic", href: "/student/games", icon: Brain, badge: "3 Games" },
           { name: "Class Timetable", href: "/student/timetable", icon: Calendar },
           { name: "Attendance Records", href: "/student/attendance", icon: CheckSquare },
           { name: "Exam Results & Report", href: "/student/academics", icon: Award },

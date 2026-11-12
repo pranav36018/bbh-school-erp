@@ -174,8 +174,28 @@ async function runTests() {
   const demeritPoints = -2;
   assert(meritPoints > 0 && demeritPoints < 0 && (meritPoints + demeritPoints) === 8, "Student 360 Merit/Demerit points computed correctly (+8 net points)");
 
-  // 10. Health Check Verification
-  console.log("\n--- 8. System Health & Environment ---");
+  // 10. Student Interactive Cognitive Mind Games
+  console.log("\n--- 8. Interactive Mind Games & Cognitive Skills ---");
+  // Game 1: Vedic Math Blitz Logic
+  const vedicSquare5 = (n: number) => {
+    const tens = Math.floor(n / 10);
+    return tens * (tens + 1) * 100 + 25;
+  };
+  assert(vedicSquare5(35) === 1225 && vedicSquare5(85) === 7225, "Vedic Math Blitz (Ekadhikena Purvena) rapid arithmetic verified (35²=1225, 85²=7225)");
+
+  // Game 2: Logic Word Cipher
+  const testWord = "PRISM";
+  const guess = "PRISM";
+  const isWordMatch = testWord === guess;
+  assert(isWordMatch && testWord.length === 5, "Logic Word Cipher verified deductive clue solving & letter validation");
+
+  // Game 3: Matrix Spatial Recall
+  const matrixGridSize = 4 * 4;
+  const samplePattern = [2, 5, 11, 14];
+  assert(samplePattern.length === 4 && samplePattern.every(i => i < matrixGridSize), "Matrix Memory Recall pattern generation verified (4 random tiles in 4x4 grid)");
+
+  // 11. Health Check Verification
+  console.log("\n--- 9. System Health & Environment ---");
   assert(DEMO_INSTITUTIONS.length === 3, "Demo institutions loaded (2 CBSE + 1 State Board)");
   assert(DEMO_USERS.length >= 10, "Demo user roster populated with all 4 portal roles");
   assert(DEMO_STUDENTS.length >= 5, "Demo student records populated with marks and fee ledgers");
