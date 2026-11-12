@@ -19,6 +19,13 @@ import {
   Gamepad2,
   Star,
   Target,
+  ChevronDown,
+  ChevronUp,
+  BookOpen,
+  Info,
+  ListOrdered,
+  Check,
+  X,
 } from "lucide-react";
 import { DEMO_STUDENTS } from "@/lib/mock-data";
 
@@ -99,6 +106,34 @@ interface WordCipherItem {
   funFact: string;
 }
 
+function getWordLetterHint(word: string) {
+  const len = word.length;
+  if (len <= 5) {
+    // 1-letter hint for small words (<= 5 letters)
+    const letter = word[0];
+    const preview = [letter, ...Array(len - 1).fill("_")].join(" ");
+    return {
+      type: "small" as const,
+      letterCount: 1,
+      description: `Small Word (${len} letters): 1 letter revealed`,
+      detail: `The 1st letter is "${letter}"`,
+      preview,
+    };
+  } else {
+    // 2-letter hint for big words (>= 6 letters)
+    const firstLetter = word[0];
+    const lastLetter = word[len - 1];
+    const preview = [firstLetter, ...Array(len - 2).fill("_"), lastLetter].join(" ");
+    return {
+      type: "big" as const,
+      letterCount: 2,
+      description: `Big Word (${len} letters): 2 letters revealed`,
+      detail: `Starts with "${firstLetter}" and ends with "${lastLetter}"`,
+      preview,
+    };
+  }
+}
+
 const WORD_PUZZLES: WordCipherItem[] = [
   {
     word: "PRISM",
@@ -149,6 +184,9 @@ function generateRandomPattern(count: number): number[] {
 export default function StudentGamesPage() {
   const student = DEMO_STUDENTS[0];
   const [activeGame, setActiveGame] = useState<"VEDIC_MATH" | "WORD_CIPHER" | "MATRIX_MEMORY">("VEDIC_MATH");
+
+  // Instructions drawer state
+  const [showInstructions, setShowInstructions] = useState(true);
 
   // Global Brain Points
   const [brainPoints, setBrainPoints] = useState(380);
@@ -216,6 +254,7 @@ export default function StudentGamesPage() {
   const [currentGuess, setCurrentGuess] = useState("");
   const [cipherSolved, setCipherSolved] = useState(false);
   const [cipherMessage, setCipherMessage] = useState("");
+  const [showCipherHint, setShowCipherHint] = useState(false);
 
   const handleCipherSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -248,6 +287,7 @@ export default function StudentGamesPage() {
     setCurrentGuess("");
     setCipherSolved(false);
     setCipherMessage("");
+    setShowCipherHint(false);
   };
 
   // ----------------------------------------------------
@@ -544,6 +584,58 @@ export default function StudentGamesPage() {
             </span>
             <p className="text-slate-800 text-sm font-semibold">{currentCipher.clue}</p>
           </div>
+
+          {/* Dynamic Letter Hint Bar */}
+          {(() => {
+            const hintInfo = getWordLetterHint(currentCipher.word);
+            return (
+              <div className="rounded-xl border border-amber-200 bg-amber-50/70 p-3.5 text-xs transition-all">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-100 text-amber-700 font-bold">
+                      💡
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-extrabold text-amber-950">Letter Hint</span>
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-200 text-amber-900">
+                          {hintInfo.letterCount === 1 ? "1 Letter (Small Word)" : "2 Letters (Big Word)"}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-amber-800 mt-0.5">
+                        {showCipherHint
+                          ? hintInfo.detail
+                          : `Stuck? Reveal ${hintInfo.letterCount} letter${hintInfo.letterCount > 1 ? "s" : ""} to help solve this puzzle.`}
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setShowCipherHint(!showCipherHint)}
+                    className="self-start sm:self-auto px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all"
+                  >
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>{showCipherHint ? "Hide Letter Hint" : "Reveal Letter Hint"}</span>
+                  </button>
+                </div>
+
+                {showCipherHint && (
+                  <div className="mt-3 pt-3 border-t border-amber-200/80 flex flex-col items-center gap-1 bg-amber-100/40 rounded-lg p-2.5">
+                    <span className="text-[10px] font-extrabold tracking-wider uppercase text-amber-900">
+                      Letter Pattern
+                    </span>
+                    <span className="font-mono text-2xl font-black text-slate-900 tracking-[0.35em]">
+                      {hintInfo.preview}
+                    </span>
+                    <span className="text-xs text-amber-950 font-medium mt-0.5">
+                      {hintInfo.detail}
+                    </span>
+                  </div>
+                )}
+              </div>
+            );
+          })()}
 
           {/* Guess Tiles Board */}
           <div className="flex flex-col items-center gap-2 max-w-sm mx-auto">

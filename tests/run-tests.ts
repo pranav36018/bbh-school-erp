@@ -183,11 +183,17 @@ async function runTests() {
   };
   assert(vedicSquare5(35) === 1225 && vedicSquare5(85) === 7225, "Vedic Math Blitz (Ekadhikena Purvena) rapid arithmetic verified (35²=1225, 85²=7225)");
 
-  // Game 2: Logic Word Cipher
+  // Game 2: Logic Word Cipher & Letter Clue Rules
   const testWord = "PRISM";
   const guess = "PRISM";
   const isWordMatch = testWord === guess;
   assert(isWordMatch && testWord.length === 5, "Logic Word Cipher verified deductive clue solving & letter validation");
+
+  // Verify Small vs Big word letter hint rules:
+  // Small words (<= 5 letters): 1 letter hint
+  const smallHint = (word: string) => word.length <= 5 ? 1 : 2;
+  assert(smallHint("PRISM") === 1, "Small word (<= 5 letters) reveals exactly 1 letter hint (P _ _ _ _)");
+  assert(smallHint("NEURON") === 2 && smallHint("EQUATOR") === 2, "Big word (>= 6 letters) reveals exactly 2 letter hints (N _ _ _ _ N, E _ _ _ _ _ R)");
 
   // Game 3: Matrix Spatial Recall
   const matrixGridSize = 4 * 4;

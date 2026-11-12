@@ -72,6 +72,10 @@ export default function PortalSidebar({ portal }: PortalSidebarProps) {
           { name: "Visitor & Gate Pass", href: "/admin/visitors", icon: ShieldCheck, badge: "Security" },
           { name: "Store & Inventory", href: "/admin/inventory", icon: Package },
           { name: "Hostel Management", href: "/admin/hostel", icon: Home },
+          { name: "Campus Library", href: "/admin/library", icon: BookOpen },
+          { name: "Staff Leaves & Payroll", href: "/admin/payroll", icon: DollarSign },
+          { name: "Certificates & TC", href: "/admin/certificates", icon: FileCheck, badge: "TC" },
+          { name: "PTM & Appointments", href: "/admin/ptm", icon: Clock },
           { name: "Notices & Broadcasts", href: "/admin/communication", icon: MessageSquare },
           { name: "Operations & Transport", href: "/admin/operations", icon: Bus },
         ];

@@ -100,7 +100,7 @@ export interface DemoUser {
   targetPortal: "director" | "admin" | "teacher" | "student";
 }
 
-export const DEMO_USERS: DemoUser[] = [
+const BASE_DEMO_USERS: DemoUser[] = [
   // 1. Director
   {
     id: "usr-dir-001",
@@ -389,7 +389,7 @@ export interface DemoStudentDetail {
   transport: DemoStudentTransport;
 }
 
-export const DEMO_STUDENTS: DemoStudentDetail[] = [
+const BASE_DEMO_STUDENTS: DemoStudentDetail[] = [
   {
     id: "stu-001",
     humanId: "STU-INS000001-000001",
@@ -599,4 +599,20 @@ export const DEMO_ANNOUNCEMENTS = [
     author: "Cultural Committee",
     content: "Students from all sections showcased traditional Karnataka handicrafts, literature recitations, and historical tableaux.",
   },
+];
+
+import { IMPORTED_STUDENTS, IMPORTED_STUDENT_USERS } from "./imported-students";
+import { IMPORTED_STAFF, IMPORTED_STAFF_USERS } from "./imported-staff";
+
+export { IMPORTED_STUDENTS, IMPORTED_STAFF };
+
+export const DEMO_USERS: DemoUser[] = [
+  ...BASE_DEMO_USERS,
+  ...IMPORTED_STAFF_USERS,
+  ...IMPORTED_STUDENT_USERS,
+];
+
+export const DEMO_STUDENTS: DemoStudentDetail[] = [
+  ...BASE_DEMO_STUDENTS,
+  ...IMPORTED_STUDENTS,
 ];

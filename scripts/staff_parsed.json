@@ -1,0 +1,1334 @@
+﻿[
+    {
+        "Name":  "N.Radhamani",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "puc",
+        "DOB":  "01-02-2025",
+        "Phone":  "+919164487339",
+        "Address":  ""
+    },
+    {
+        "Name":  "Geetha Rajesh K",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "25-04-1976",
+        "Phone":  "+919972648579",
+        "Address":  ""
+    },
+    {
+        "Name":  "Shobha S B",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "20-07-1982",
+        "Phone":  "+919964225557",
+        "Address":  ""
+    },
+    {
+        "Name":  "Bhagirathi K",
+        "EmployeeId":  "",
+        "Role":  "H M",
+        "Qualification":  "PUC NTT",
+        "DOB":  "26-02-1964",
+        "Phone":  "+918971258654",
+        "Address":  ""
+    },
+    {
+        "Name":  "Pankaja G",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "PUC.D.Ed",
+        "DOB":  "22-11-1990",
+        "Phone":  "+919164799910",
+        "Address":  ""
+    },
+    {
+        "Name":  "Nethravathi M",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "PUC",
+        "DOB":  "14-03-1988",
+        "Phone":  "+917676321210",
+        "Address":  ""
+    },
+    {
+        "Name":  "Vijayalakshmi T K",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "M.A. DCA",
+        "DOB":  "15-05-1977",
+        "Phone":  "+918050543341",
+        "Address":  ""
+    },
+    {
+        "Name":  "Navaneetha",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "SSLC",
+        "DOB":  "22-05-1982",
+        "Phone":  "+918217326178",
+        "Address":  ""
+    },
+    {
+        "Name":  "Ambika M",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "PUC",
+        "DOB":  "18-07-1990",
+        "Phone":  "+917996464872",
+        "Address":  "5th cross, Near Kannakabhavan,M.V.Extension"
+    },
+    {
+        "Name":  "Shilpa B V",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "B.Sc B.Ed",
+        "DOB":  "05-04-1991",
+        "Phone":  "+919686127177",
+        "Address":  "Nidaghatta(v),Dasarahalli(p), Hosakote (tq), Bangalore rural district, Karnataka -562114"
+    },
+    {
+        "Name":  "Muniyappa",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "M A M.Ed",
+        "DOB":  "04-05-1988",
+        "Phone":  "+919901767934",
+        "Address":  ""
+    },
+    {
+        "Name":  "Prakash A R",
+        "EmployeeId":  "",
+        "Role":  "Pi",
+        "Qualification":  "B.A B.P.Ed",
+        "DOB":  "26-06-1985",
+        "Phone":  "+918746049128",
+        "Address":  ""
+    },
+    {
+        "Name":  "Manjula M",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "M A B.Ed",
+        "DOB":  "01-03-1991",
+        "Phone":  "+919686321123",
+        "Address":  ""
+    },
+    {
+        "Name":  "Shashikala R",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "B A B.Ed",
+        "DOB":  "09-06-1974",
+        "Phone":  "+917022839269",
+        "Address":  ""
+    },
+    {
+        "Name":  "Kavitha B S",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "B.Sc B.Ed",
+        "DOB":  "27-06-1974",
+        "Phone":  "+919481608170",
+        "Address":  ""
+    },
+    {
+        "Name":  "Padmavathi V",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "M.Sc B.Ed",
+        "DOB":  "29-07-1987",
+        "Phone":  "+917795762448",
+        "Address":  ""
+    },
+    {
+        "Name":  "Chaitra M V",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "B A D.Ed",
+        "DOB":  "06-05-1988",
+        "Phone":  "+918050062590",
+        "Address":  ""
+    },
+    {
+        "Name":  "Maithra Veeranna Gouda Chinnappa Goudra",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "B A (NTT)",
+        "DOB":  "30-05-1992",
+        "Phone":  "+918904766926",
+        "Address":  ""
+    },
+    {
+        "Name":  "Shantha K M",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "M A B.Ed",
+        "DOB":  "10-09-1969",
+        "Phone":  "+919740044845",
+        "Address":  ""
+    },
+    {
+        "Name":  "Komala",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "04-04-1998",
+        "Phone":  "+917899157367",
+        "Address":  ""
+    },
+    {
+        "Name":  "Savitha s Palled",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "11-05-1982",
+        "Phone":  "+919964785782",
+        "Address":  ""
+    },
+    {
+        "Name":  "Veena A S",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "S S L C (NTT)",
+        "DOB":  "10-05-1991",
+        "Phone":  "+918546939709",
+        "Address":  ""
+    },
+    {
+        "Name":  "Anuradha R",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "B A D.Ed",
+        "DOB":  "03-08-1979",
+        "Phone":  "+919980539592",
+        "Address":  ""
+    },
+    {
+        "Name":  "Nagaveni Patgar",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-05-1980",
+        "Phone":  "+918660103121",
+        "Address":  ""
+    },
+    {
+        "Name":  "Sangeetha S S",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "15-04-1992",
+        "Phone":  "+918861383543",
+        "Address":  ""
+    },
+    {
+        "Name":  "Poornima K R",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "10-07-1987",
+        "Phone":  "+918618841854",
+        "Address":  ""
+    },
+    {
+        "Name":  "Lakshmi K M",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "02-02-1988",
+        "Phone":  "+918618841854",
+        "Address":  ""
+    },
+    {
+        "Name":  "Mamatha R",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "21-05-1990",
+        "Phone":  "+919916374711",
+        "Address":  ""
+    },
+    {
+        "Name":  "Aruna S G",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "10-06-1986",
+        "Phone":  "+918660089641",
+        "Address":  ""
+    },
+    {
+        "Name":  "Pallavi N",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "22-01-1997",
+        "Phone":  "+919535488763",
+        "Address":  ""
+    },
+    {
+        "Name":  "Shruti P",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "26-05-1991",
+        "Phone":  "+919880852238",
+        "Address":  ""
+    },
+    {
+        "Name":  "SHRUTHI J",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "18-06-1992",
+        "Phone":  "+919148665833",
+        "Address":  ""
+    },
+    {
+        "Name":  "VEENA N",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "19-05-1995",
+        "Phone":  "+917483909887",
+        "Address":  ""
+    },
+    {
+        "Name":  "ATHMANANDA",
+        "EmployeeId":  "",
+        "Role":  "Driver",
+        "Qualification":  "",
+        "DOB":  "21-10-1984",
+        "Phone":  "+918310604126",
+        "Address":  ""
+    },
+    {
+        "Name":  "BALU S",
+        "EmployeeId":  "",
+        "Role":  "Driver",
+        "Qualification":  "",
+        "DOB":  "04-09-1983",
+        "Phone":  "+919591785708",
+        "Address":  ""
+    },
+    {
+        "Name":  "CHIKKAPPAYYA",
+        "EmployeeId":  "",
+        "Role":  "Driver",
+        "Qualification":  "",
+        "DOB":  "01-01-1975",
+        "Phone":  "+919901700214",
+        "Address":  ""
+    },
+    {
+        "Name":  "NAGARAJA R",
+        "EmployeeId":  "",
+        "Role":  "Driver",
+        "Qualification":  "",
+        "DOB":  "04-07-1997",
+        "Phone":  "+918722571544",
+        "Address":  ""
+    },
+    {
+        "Name":  "V HARISH",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "05-06-1983",
+        "Phone":  "+919731269861",
+        "Address":  ""
+    },
+    {
+        "Name":  "R BHAGYA",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "21-04-1986",
+        "Phone":  "+919535234715",
+        "Address":  ""
+    },
+    {
+        "Name":  "NARAYANAMMA",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-07-1969",
+        "Phone":  "+919742410131",
+        "Address":  ""
+    },
+    {
+        "Name":  "RATHNAMMA M",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-01-1985",
+        "Phone":  "+917022950599",
+        "Address":  ""
+    },
+    {
+        "Name":  "USHA",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "13-01-1986",
+        "Phone":  "+918970103564",
+        "Address":  ""
+    },
+    {
+        "Name":  "GIRIJAMMA",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "14-03-1980",
+        "Phone":  "+917760936112",
+        "Address":  ""
+    },
+    {
+        "Name":  "N VANAJAKSHI",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-10-1987",
+        "Phone":  "+919999999999",
+        "Address":  ""
+    },
+    {
+        "Name":  "LATHA M C",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "18-02-1980",
+        "Phone":  "+918971327840",
+        "Address":  ""
+    },
+    {
+        "Name":  "LAKSHMI",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-01-1987",
+        "Phone":  "+919972109644",
+        "Address":  ""
+    },
+    {
+        "Name":  "SHOBHA N",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-06-1989",
+        "Phone":  "+917022732853",
+        "Address":  ""
+    },
+    {
+        "Name":  "LAKSHMIDEVI",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-01-1986",
+        "Phone":  "+919738706323",
+        "Address":  ""
+    },
+    {
+        "Name":  "HEMA",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "10-06-1975",
+        "Phone":  "+917259967205",
+        "Address":  ""
+    },
+    {
+        "Name":  "Krishnamurthy N hegde",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "",
+        "DOB":  "14-05-1954",
+        "Phone":  "+919686042586",
+        "Address":  ""
+    },
+    {
+        "Name":  "Gnaneshwara V",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "",
+        "DOB":  "01-06-1961",
+        "Phone":  "+918105162980",
+        "Address":  ""
+    },
+    {
+        "Name":  "Muniramachandra Gupta",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "",
+        "DOB":  "06-05-1962",
+        "Phone":  "+919980281395",
+        "Address":  ""
+    },
+    {
+        "Name":  "Mukthamba N",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "",
+        "DOB":  "10-03-1960",
+        "Phone":  "+919632802862",
+        "Address":  ""
+    },
+    {
+        "Name":  "MANJUNATHA B N",
+        "EmployeeId":  "",
+        "Role":  "Finance",
+        "Qualification":  "",
+        "DOB":  "03-03-1972",
+        "Phone":  "+919901541320",
+        "Address":  ""
+    },
+    {
+        "Name":  "DIVYA",
+        "EmployeeId":  "",
+        "Role":  "Finance",
+        "Qualification":  "",
+        "DOB":  "28-12-1990",
+        "Phone":  "+918884289944",
+        "Address":  ""
+    },
+    {
+        "Name":  "prema h g",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "11-12-1998",
+        "Phone":  "+919999999999",
+        "Address":  ""
+    },
+    {
+        "Name":  "lakshmi devi CBSE",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "",
+        "DOB":  "08-05-1978",
+        "Phone":  "+919902028757",
+        "Address":  ""
+    },
+    {
+        "Name":  "t k lakshmanna",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "",
+        "DOB":  "01-02-1985",
+        "Phone":  "+911111111111",
+        "Address":  ""
+    },
+    {
+        "Name":  "gowramma",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-01-1975",
+        "Phone":  "+911111111111",
+        "Address":  ""
+    },
+    {
+        "Name":  "h r lakshmi",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-02-1985",
+        "Phone":  "+919999999999",
+        "Address":  ""
+    },
+    {
+        "Name":  "chandrakalla m",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "11-12-1999",
+        "Phone":  "+911111111111",
+        "Address":  ""
+    },
+    {
+        "Name":  "pramila",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "12-11-1998",
+        "Phone":  "+911111111111",
+        "Address":  ""
+    },
+    {
+        "Name":  "SHOBHA",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-05-1998",
+        "Phone":  "+911111111111",
+        "Address":  ""
+    },
+    {
+        "Name":  "AMBIKA C",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "11-12-1996",
+        "Phone":  "+916666666666",
+        "Address":  ""
+    },
+    {
+        "Name":  "GAYATHRI N",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "11-12-1995",
+        "Phone":  "+915855555555",
+        "Address":  ""
+    },
+    {
+        "Name":  "PUSPHALATHA G",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-02-1996",
+        "Phone":  "+915555555555",
+        "Address":  ""
+    },
+    {
+        "Name":  "SIDDAIAH KANTHA",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "11-12-1968",
+        "Phone":  "+918888888888",
+        "Address":  ""
+    },
+    {
+        "Name":  "CHIPPAGI NAGA HIMABINDU",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "11-12-1998",
+        "Phone":  "+915555555555",
+        "Address":  ""
+    },
+    {
+        "Name":  "GOWTHAMI M",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "11-11-1985",
+        "Phone":  "+915555555555",
+        "Address":  ""
+    },
+    {
+        "Name":  "PUSPHA C",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "12-11-1995",
+        "Phone":  "+914444444444",
+        "Address":  ""
+    },
+    {
+        "Name":  "PRAKASH K S",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-1965",
+        "Phone":  "+916666666666",
+        "Address":  ""
+    },
+    {
+        "Name":  "L VENUGOPAL",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "11-12-1955",
+        "Phone":  "+914444444444",
+        "Address":  ""
+    },
+    {
+        "Name":  "MALLIKARJUNA K",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-02-1968",
+        "Phone":  "+914444444444",
+        "Address":  ""
+    },
+    {
+        "Name":  "B VIKAS",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "+919999999999",
+        "Address":  ""
+    },
+    {
+        "Name":  "Suresh kumar M",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "rashmi c",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "+919590962135",
+        "Address":  ""
+    },
+    {
+        "Name":  "Rakshita K",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "+919999999999",
+        "Address":  ""
+    },
+    {
+        "Name":  "Shwetha B V",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "nethravathi B G",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "+919999999999",
+        "Address":  ""
+    },
+    {
+        "Name":  "Bindu s k",
+        "EmployeeId":  "",
+        "Role":  "Computer teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "monisha a j",
+        "EmployeeId":  "",
+        "Role":  "Computer teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "K Chandrika",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "Arun Kumar M",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "B.B.M",
+        "DOB":  "02-02-1990",
+        "Phone":  "+919845227381",
+        "Address":  "Konanakunte, Bangalore"
+    },
+    {
+        "Name":  "roopa k s",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "roopeshkumar g",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "geetha h r",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "yadu bhargava m s",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "nagarathna v",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "sudha g",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "deshpande jayarao",
+        "EmployeeId":  "",
+        "Role":  "H M",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "latha T C",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "Aruna B K",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "B.A",
+        "DOB":  "01-02-1972",
+        "Phone":  "+919945701316",
+        "Address":  "hoskote"
+    },
+    {
+        "Name":  "thirumalesh c r",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "savithri B R",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "Venkatesh R",
+        "EmployeeId":  "",
+        "Role":  "Van Incharge",
+        "Qualification":  "",
+        "DOB":  "01-01-1990",
+        "Phone":  "+919999999999",
+        "Address":  ""
+    },
+    {
+        "Name":  "Meghana P",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "",
+        "DOB":  "01-01-1990",
+        "Phone":  "+917899437880",
+        "Address":  ""
+    },
+    {
+        "Name":  "Manasa V A",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-1990",
+        "Phone":  "+919999999999",
+        "Address":  ""
+    },
+    {
+        "Name":  "Nagarathnamma S",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "01-01-1990",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "Manjunath Hegde V A",
+        "EmployeeId":  "",
+        "Role":  "Lab instructor",
+        "Qualification":  "",
+        "DOB":  "01-01-1990",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "Muniyamma",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-01-1990",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "Akthar Unnisa",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-01-1990",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "J S Mudigowder",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "",
+        "DOB":  "01-01-1990",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "MALLIKARJUN",
+        "EmployeeId":  "",
+        "Role":  "Pi",
+        "Qualification":  "",
+        "DOB":  "02-12-1995",
+        "Phone":  "+919964922612",
+        "Address":  ""
+    },
+    {
+        "Name":  "Asha G",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "",
+        "DOB":  "02-06-2025",
+        "Phone":  "+919686795239",
+        "Address":  ""
+    },
+    {
+        "Name":  "Chaithra P V",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "02-05-2000",
+        "Phone":  "+918197193230",
+        "Address":  ""
+    },
+    {
+        "Name":  "Rathna B D",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "18-02-1978",
+        "Phone":  "+918050755657",
+        "Address":  ""
+    },
+    {
+        "Name":  "Sahana K N",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "02-10-1991",
+        "Phone":  "+919740598517",
+        "Address":  ""
+    },
+    {
+        "Name":  "Rashmi N",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "",
+        "DOB":  "28-03-1994",
+        "Phone":  "+917026760019",
+        "Address":  ""
+    },
+    {
+        "Name":  "PAVITHRA C S",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "",
+        "DOB":  "15-04-1992",
+        "Phone":  "+918660206038",
+        "Address":  ""
+    },
+    {
+        "Name":  "Roopa S B",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "M.Sc B.Ed",
+        "DOB":  "18-11-1991",
+        "Phone":  "+917353990613",
+        "Address":  ""
+    },
+    {
+        "Name":  "somashekar",
+        "EmployeeId":  "",
+        "Role":  "Admin",
+        "Qualification":  "",
+        "DOB":  "09-09-2000",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "RAMYA G",
+        "EmployeeId":  "",
+        "Role":  "Admin",
+        "Qualification":  "BCA",
+        "DOB":  "20-01-1997",
+        "Phone":  "+917337785380",
+        "Address":  "Back side of Gangamma Gudi temple, after Rohini silk saree, 2nd left, 3rd building, 1st floor,"
+    },
+    {
+        "Name":  "Nirmala B A",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "BA , MA, TCH",
+        "DOB":  "01-06-1976",
+        "Phone":  "+919900149972",
+        "Address":  ""
+    },
+    {
+        "Name":  "Manjula K N",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "BA, BED",
+        "DOB":  "21-11-1984",
+        "Phone":  "+919353797002",
+        "Address":  ""
+    },
+    {
+        "Name":  "Naveen Prasad S G",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "BA , TCH",
+        "DOB":  "20-05-1984",
+        "Phone":  "+919482214768",
+        "Address":  ""
+    },
+    {
+        "Name":  "Munirathnamma N",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "B A, TCH",
+        "DOB":  "04-02-1975",
+        "Phone":  "+919731544161",
+        "Address":  ""
+    },
+    {
+        "Name":  "Shwetha G",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "BA, TCH",
+        "DOB":  "20-07-1980",
+        "Phone":  "+919241656565",
+        "Address":  ""
+    },
+    {
+        "Name":  "Kavya S",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "29-06-1998",
+        "Phone":  "+918792278918",
+        "Address":  ""
+    },
+    {
+        "Name":  "Muniyappa M",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "",
+        "DOB":  "08-06-1979",
+        "Phone":  "+918095788954",
+        "Address":  ""
+    },
+    {
+        "Name":  "Murari Pallavi",
+        "EmployeeId":  "",
+        "Role":  "H M",
+        "Qualification":  "bsc bed",
+        "DOB":  "16-01-1967",
+        "Phone":  "+917411278130",
+        "Address":  ""
+    },
+    {
+        "Name":  "Uday Kumar N",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "BSC, DED",
+        "DOB":  "15-07-1985",
+        "Phone":  "+919663793284",
+        "Address":  ""
+    },
+    {
+        "Name":  "Vinodha N",
+        "EmployeeId":  "",
+        "Role":  "H M",
+        "Qualification":  "",
+        "DOB":  "04-06-1973",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "Divya GV",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "B.A D.Ed",
+        "DOB":  "02-12-1995",
+        "Phone":  "+918310725298",
+        "Address":  ""
+    },
+    {
+        "Name":  "Santhosh Kumar J D",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "16-01-1967",
+        "Phone":  "+918317398324",
+        "Address":  ""
+    },
+    {
+        "Name":  "Lakshmana Reddy",
+        "EmployeeId":  "",
+        "Role":  "Security",
+        "Qualification":  "",
+        "DOB":  "01-05-1950",
+        "Phone":  "+917338325607",
+        "Address":  ""
+    },
+    {
+        "Name":  "Harry Vincent P",
+        "EmployeeId":  "",
+        "Role":  "Security",
+        "Qualification":  "",
+        "DOB":  "19-07-1964",
+        "Phone":  "+918310048395",
+        "Address":  ""
+    },
+    {
+        "Name":  "Manjunatha S G",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "22-05-1995",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "Rashmi DN",
+        "EmployeeId":  "",
+        "Role":  "H M",
+        "Qualification":  "",
+        "DOB":  "07-11-1990",
+        "Phone":  "+919196116706",
+        "Address":  ""
+    },
+    {
+        "Name":  "Madhav Singh",
+        "EmployeeId":  "",
+        "Role":  "Security",
+        "Qualification":  "8th std",
+        "DOB":  "01-01-1995",
+        "Phone":  "+917073288378",
+        "Address":  "345, Alwar Baipass, village - aahiana aangan, Bhiwadi, Alwar"
+    },
+    {
+        "Name":  "Shankar N",
+        "EmployeeId":  "",
+        "Role":  "Manager",
+        "Qualification":  "",
+        "DOB":  "06-03-1971",
+        "Phone":  "+919341562795",
+        "Address":  ""
+    },
+    {
+        "Name":  "Renuka Amaresh Teli",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "B E(E \u0026 C)",
+        "DOB":  "28-01-1988",
+        "Phone":  "+919380822960",
+        "Address":  "13th cross, Kanaka Bhavana , Hoskote"
+    },
+    {
+        "Name":  "shwetha L",
+        "EmployeeId":  "",
+        "Role":  "Clerk",
+        "Qualification":  "BCA",
+        "DOB":  "14-10-2005",
+        "Phone":  "+918792223794",
+        "Address":  ""
+    },
+    {
+        "Name":  "Ganavi M C",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "M.SC",
+        "DOB":  "15-09-1999",
+        "Phone":  "+919591310752",
+        "Address":  "hoskote"
+    },
+    {
+        "Name":  "yeddula sandhya",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "",
+        "DOB":  "20-01-1999",
+        "Phone":  "",
+        "Address":  ""
+    },
+    {
+        "Name":  "Saritha A",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "PUC, Ded",
+        "DOB":  "02-07-1988",
+        "Phone":  "+917624959717",
+        "Address":  ""
+    },
+    {
+        "Name":  "Vennalla",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "B E(CS)",
+        "DOB":  "22-02-1997",
+        "Phone":  "+918861083048",
+        "Address":  ""
+    },
+    {
+        "Name":  "Ashwini D",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "Bsc, Bed",
+        "DOB":  "07-09-1998",
+        "Phone":  "+918861879600",
+        "Address":  ""
+    },
+    {
+        "Name":  "Smitha",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "",
+        "DOB":  "18-06-1986",
+        "Phone":  "+919199015953",
+        "Address":  ""
+    },
+    {
+        "Name":  "Krishna Murthy",
+        "EmployeeId":  "",
+        "Role":  "Driver",
+        "Qualification":  "",
+        "DOB":  "24-11-1978",
+        "Phone":  "+919900241245",
+        "Address":  "Chikkanahalli"
+    },
+    {
+        "Name":  "Manjula H C",
+        "EmployeeId":  "",
+        "Role":  "Aaya",
+        "Qualification":  "",
+        "DOB":  "01-01-1984",
+        "Phone":  "",
+        "Address":  "Hoskote"
+    },
+    {
+        "Name":  "Srushti K M",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "BBA",
+        "DOB":  "26-04-2006",
+        "Phone":  "+919164790714",
+        "Address":  "Kumbalahalli"
+    },
+    {
+        "Name":  "Suganthi V",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "BA(eng)",
+        "DOB":  "10-06-1993",
+        "Phone":  "+918073136705",
+        "Address":  "Hoskote"
+    },
+    {
+        "Name":  "Kavitha L",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "BA",
+        "DOB":  "29-05-1997",
+        "Phone":  "+917204588045",
+        "Address":  "Hoskote"
+    },
+    {
+        "Name":  "Anitha H",
+        "EmployeeId":  "",
+        "Role":  "Assit Teacher",
+        "Qualification":  "BA",
+        "DOB":  "24-04-1986",
+        "Phone":  "+919902609285",
+        "Address":  "Hoskote"
+    },
+    {
+        "Name":  "Sowmya Shree V",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "B com",
+        "DOB":  "26-06-1997",
+        "Phone":  "+917406516049",
+        "Address":  "Thaygraj Layout , Hoskote"
+    },
+    {
+        "Name":  "Vidyashree S",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "BE, NTT",
+        "DOB":  "30-12-1998",
+        "Phone":  "+919341444983",
+        "Address":  "Near Kanaka Bhavana , Hoskote"
+    },
+    {
+        "Name":  "Sushma G S",
+        "EmployeeId":  "",
+        "Role":  "Assistant Teacher",
+        "Qualification":  "MSC, Bed",
+        "DOB":  "08-11-1985",
+        "Phone":  "+919538636225",
+        "Address":  "Annapoorneshwari Nagar , Hoskote"
+    },
+    {
+        "Name":  "N Suma",
+        "EmployeeId":  "",
+        "Role":  "Attender",
+        "Qualification":  "BCom",
+        "DOB":  "13-11-1992",
+        "Phone":  "+917259310843",
+        "Address":  "Kanaka Bhavan behind 5th cross"
+    }
+]
