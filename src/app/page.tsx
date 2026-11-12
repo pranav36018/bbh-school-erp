@@ -91,18 +91,7 @@ export default function HomePage() {
             <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 font-medium text-emerald-300 ring-1 ring-inset ring-emerald-500/30">
               DPDP Act 2023 Compliant
             </span>
-            <span>Empowering Schools Across India with NEP 2020 Multi-Board Standards</span>
-          </div>
-          <div className="flex items-center gap-4 text-slate-300">
-            <span>CBSE</span>
-            <span>•</span>
-            <span>Karnataka (KSEAB)</span>
-            <span>•</span>
-            <span>Maharashtra</span>
-            <span>•</span>
-            <span>Tamil Nadu</span>
-            <span>•</span>
-            <span>Kerala</span>
+            <span>Empowering Schools Across India with NEP 2020 Standards</span>
           </div>
         </div>
       </div>
