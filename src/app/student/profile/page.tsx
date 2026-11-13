@@ -27,12 +27,15 @@ export default function StudentProfilePage() {
         <div className="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-6 shadow-2xl border border-slate-700 max-w-md mx-auto w-full">
           {/* Card Top */}
           <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
-            <div>
-              <span className="text-[10px] uppercase tracking-wider font-semibold text-blue-400">Delhi Public School Society</span>
-              <h2 className="text-sm font-extrabold tracking-tight">DPS BENGALURU NORTH</h2>
+            <div className="flex items-center gap-3">
+              <img src="/images/svvk-logo.png" alt="SVVK" className="w-10 h-10 rounded-full object-contain bg-amber-500/10 p-0.5 border border-amber-500/30" />
+              <div>
+                <span className="text-[9px] uppercase tracking-wider font-semibold text-amber-400 block">Swamy Vivekananda Vidya Kendra Trust</span>
+                <h2 className="text-xs font-black tracking-tight text-white">SRI VIVEKANANDA VIDYA KENDRA</h2>
+              </div>
             </div>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">
-              CBSE Affiliated
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              CBSE: 830680
             </span>
           </div>
 

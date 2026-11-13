@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "India Unified School ERP Platform",
-  description: "Enterprise Multi-School, Multi-Board, Multi-Campus Digital Campus ERP for India (CBSE, KSEAB, MSBSHSE, TNSB, KBPE)",
+  title: "Sri Vivekananda Vidya Kendra | CBSE Digital Campus ERP",
+  description: "Sri Vivekananda Vidya Kendra, Hoskote (CBSE Affiliation: 830680) - Managed by Swamy Vivekananda Vidya Kendra Trust. Digital Campus Management System.",
+  icons: {
+    icon: "/images/svvk-logo.png",
+  },
 };
 
 export default function RootLayout({

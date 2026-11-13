@@ -134,15 +134,23 @@ export default function LoginForm({
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-6 shadow-xl shadow-slate-200/50 rounded-2xl sm:px-10 border border-slate-200">
           {/* Header */}
-          <div className="text-center mb-8">
-            <div className={`mx-auto w-14 h-14 rounded-2xl bg-gradient-to-tr ${theme.gradient} flex items-center justify-center text-white shadow-lg mb-4`}>
-              <Icon className="w-7 h-7" />
+          <div className="text-center mb-6">
+            <img
+              src="/images/svvk-logo.png"
+              alt="Sri Vivekananda Vidya Kendra"
+              className="mx-auto w-16 h-16 rounded-full object-contain mb-2.5 border-2 border-amber-500/40 shadow-md bg-amber-50/70"
+            />
+            <p className="text-[10px] font-bold tracking-widest text-amber-800">॥ विद्या ददाति विनयम् ॥</p>
+            <h1 className="text-sm font-black tracking-tight text-slate-900 uppercase">Sri Vivekananda Vidya Kendra</h1>
+            <p className="text-[10px] text-slate-500 font-medium mb-3">Affiliated to CBSE, New Delhi – 830680 • Hoskote</p>
+
+            <div className="flex items-center justify-center gap-2">
+              <span className={`inline-block text-[11px] font-semibold px-3 py-1 rounded-full border ${theme.tag}`}>
+                {badge}
+              </span>
             </div>
-            <span className={`inline-block text-[11px] font-semibold px-3 py-1 rounded-full border mb-2 ${theme.tag}`}>
-              {badge}
-            </span>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900">{title}</h2>
-            <p className="text-xs text-slate-500 mt-1">{subtitle}</p>
+            <h2 className="text-xl font-bold tracking-tight text-slate-900 mt-2">{title}</h2>
+            <p className="text-xs text-slate-500 mt-0.5">{subtitle}</p>
           </div>
 
           {/* Demo Autofill Banner */}

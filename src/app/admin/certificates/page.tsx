@@ -253,10 +253,12 @@ export default function AdminCertificatesPage() {
         <div className="bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 p-6 flex flex-col justify-between text-center min-h-[380px]">
           {selectedStudent ? (
             <div className="bg-white p-6 rounded-xl border shadow-sm text-left space-y-4">
-              <div className="text-center pb-3 border-b">
-                <span className="text-[9px] font-extrabold uppercase tracking-widest text-blue-700 block">Delhi Public School Society</span>
-                <h3 className="font-extrabold text-sm text-slate-900">DELHI PUBLIC SCHOOL BENGALURU NORTH</h3>
-                <p className="text-[10px] text-slate-500">Affiliation No: CBSE/AFF/830123/2026 • Survey No. 35/1A, Kogilu Road, Yelahanka</p>
+              <div className="text-center pb-3 border-b flex flex-col items-center">
+                <img src="/images/svvk-logo.png" alt="SVVK" className="w-10 h-10 rounded-full object-contain mb-1" />
+                <span className="text-[9px] font-bold text-amber-800">॥ विद्या ददाति विनयम् ॥</span>
+                <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-500 block">Swamy Vivekananda Vidya Kendra Trust</span>
+                <h3 className="font-extrabold text-sm text-slate-900">SRI VIVEKANANDA VIDYA KENDRA</h3>
+                <p className="text-[10px] text-slate-500">Affiliated to CBSE, New Delhi – 830680 • Hoskote, Bengaluru Rural – 562114</p>
               </div>
 
               <div className="text-center py-1">
@@ -296,10 +298,12 @@ export default function AdminCertificatesPage() {
           <div className="bg-white rounded-3xl max-w-2xl w-full p-8 shadow-2xl border border-slate-200">
             {/* Certificate Canvas */}
             <div className="border-4 border-double border-slate-800 p-8 rounded-2xl space-y-6 text-center">
-              <div className="space-y-1">
-                <span className="text-[10px] uppercase font-bold tracking-widest text-blue-700">Affiliated to CBSE, New Delhi (Reg No. 830123)</span>
-                <h2 className="text-2xl font-black text-slate-900 tracking-tight">DELHI PUBLIC SCHOOL BENGALURU NORTH</h2>
-                <p className="text-xs text-slate-500">Kogilu Main Road, Yelahanka, Bengaluru - 560064 | contact: admin@dpsnorthbengaluru.edu.in</p>
+              <div className="space-y-1 flex flex-col items-center">
+                <img src="/images/svvk-logo.png" alt="SVVK" className="w-14 h-14 rounded-full object-contain mb-1 shadow-sm" />
+                <span className="text-[11px] font-bold text-amber-800">॥ विद्या ददाति विनयम् ॥</span>
+                <span className="text-[10px] uppercase font-bold tracking-widest text-slate-500">Managed by Swamy Vivekananda Vidya Kendra Trust</span>
+                <h2 className="text-2xl font-black text-slate-900 tracking-tight">SRI VIVEKANANDA VIDYA KENDRA</h2>
+                <p className="text-xs text-slate-600">Affiliated to CBSE, New Delhi – Affiliation No: 830680 | Hoskote, Bengaluru Rural – 562114</p>
               </div>
 
               <div className="inline-block border-y-2 border-slate-800 py-1.5 px-6 my-2">
@@ -311,7 +315,7 @@ export default function AdminCertificatesPage() {
               <div className="text-left text-xs text-slate-800 leading-loose space-y-3">
                 <p>
                   This is to certify that Master/Kumari <strong>{selectedStudent.fullName}</strong>, holding official Admission Number{" "}
-                  <strong className="font-mono text-blue-800">{selectedStudent.admissionNo}</strong>, is/was a bonafide student of Delhi Public School Bengaluru North.
+                  <strong className="font-mono text-blue-800">{selectedStudent.admissionNo}</strong>, is/was a bonafide student of Sri Vivekananda Vidya Kendra, Hoskote.
                 </p>
                 <p>
                   According to school records, the student was enrolled in <strong>{selectedStudent.className} - {selectedStudent.section}</strong> for the academic session <strong>2026-2027</strong> under the Central Board of Secondary Education curriculum.
@@ -336,9 +340,9 @@ export default function AdminCertificatesPage() {
                 </div>
 
                 <div className="text-center">
-                  <span className="font-bold text-slate-900 block text-xs">Dr. Sunitha Radhakrishnan</span>
-                  <span className="text-[10px] text-slate-500 block">Principal & Head of Institution</span>
-                  <span className="text-[9px] font-mono text-slate-400 block">Affiliation Code: DPS-BLR-001</span>
+                  <span className="font-bold text-slate-900 block text-xs">Principal</span>
+                  <span className="text-[10px] text-slate-500 block">Sri Vivekananda Vidya Kendra</span>
+                  <span className="text-[9px] font-mono text-slate-400 block">CBSE Affiliation: 830680</span>
                 </div>
               </div>
             </div>

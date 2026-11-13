@@ -132,15 +132,22 @@ export default function PortalSidebar({ portal }: PortalSidebarProps) {
   return (
     <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 border-r border-slate-800 select-none">
       {/* Brand Header */}
-      <div className="h-16 flex items-center gap-3 px-6 border-b border-slate-800">
-        <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold shadow-md">
-          <School className="w-5 h-5" />
-        </div>
-        <div>
-          <span className="text-sm font-bold text-white tracking-tight block">UNIFIED ERP</span>
-          <span className={`inline-block text-[10px] px-2 py-0.5 rounded-full border font-semibold ${badge.color}`}>
-            {badge.label}
+      <div className="h-16 flex items-center gap-3 px-4 border-b border-slate-800">
+        <img
+          src="/images/svvk-logo.png"
+          alt="Sri Vivekananda Vidya Kendra"
+          className="w-10 h-10 rounded-full object-contain bg-amber-500/10 p-0.5 border border-amber-500/30 shrink-0"
+        />
+        <div className="overflow-hidden">
+          <span className="text-xs font-bold text-white tracking-tight block truncate">
+            SRI VIVEKANANDA
           </span>
+          <div className="flex items-center gap-1.5">
+            <span className={`inline-block text-[9px] px-1.5 py-0.2 rounded font-semibold border ${badge.color}`}>
+              {badge.label}
+            </span>
+            <span className="text-[9px] text-slate-400 font-mono">CBSE</span>
+          </div>
         </div>
       </div>
 

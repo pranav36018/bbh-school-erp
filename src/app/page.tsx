@@ -85,43 +85,54 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       {/* Top Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white text-xs py-2 px-4 border-b border-slate-800">
+      <div className="bg-gradient-to-r from-slate-950 via-amber-950/80 to-slate-950 text-white text-xs py-2 px-4 border-b border-amber-900/30">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 font-medium text-emerald-300 ring-1 ring-inset ring-emerald-500/30">
-              DPDP Act 2023 Compliant
+            <span className="font-serif tracking-widest text-amber-300 font-bold text-xs sm:text-sm">
+              ॥ विद्या ददाति विनयम् ॥
             </span>
-            <span>Empowering Schools Across India with NEP 2020 Standards</span>
+            <span className="hidden sm:inline text-amber-200/50">•</span>
+            <span className="text-amber-100/90 text-[11px] hidden sm:inline">
+              Managed by Swamy Vivekananda Vidya Kendra Trust · Hoskote, Bengaluru Rural – 562114
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center rounded-full bg-amber-500/20 px-2.5 py-0.5 font-medium text-amber-200 ring-1 ring-inset ring-amber-500/30 text-[10px]">
+              CBSE Affiliation No. 830680
+            </span>
           </div>
         </div>
       </div>
 
       {/* Navigation */}
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-indigo-600 flex items-center justify-center text-white font-bold shadow-md shadow-blue-500/20">
-              <School className="w-6 h-6" />
-            </div>
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-3.5">
+            <img
+              src="/images/svvk-logo.png"
+              alt="Sri Vivekananda Vidya Kendra Logo"
+              className="w-13 h-13 rounded-full object-contain border-2 border-amber-500/30 shadow-md bg-amber-50/50 shrink-0"
+              style={{ width: "52px", height: "52px" }}
+            />
             <div>
-              <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-indigo-950">
-                INDIA UNIFIED SCHOOL ERP
+              <span className="text-lg sm:text-xl font-black tracking-tight text-slate-900 block leading-tight">
+                SRI VIVEKANANDA VIDYA KENDRA
               </span>
-              <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">
-                Multi-School • Multi-Board • Multi-Campus SaaS
+              <p className="text-[11px] text-slate-600 font-medium tracking-tight">
+                Affiliated to CBSE, New Delhi – 830680 • Hoskote, Bengaluru Rural
               </p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <Link
               href="/admin/login"
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-700 hover:text-amber-700 transition-colors"
             >
               Admin Sign In
             </Link>
             <Link
               href="/student/login"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold shadow-sm transition-all shadow-blue-600/25"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold shadow-sm transition-all shadow-amber-600/25"
             >
               <span>Student Portal</span>
               <ArrowRight className="w-4 h-4" />
@@ -131,31 +142,34 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-16 lg:pt-20 lg:pb-24 border-b border-slate-200 bg-white">
+      <section className="relative overflow-hidden pt-12 pb-16 lg:pt-20 lg:pb-24 border-b border-slate-200 bg-gradient-to-b from-amber-50/30 via-white to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold mb-6">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Next-Gen Enterprise Education Management</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100/70 border border-amber-300 text-amber-900 text-xs font-semibold mb-6 shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+              <span>॥ विद्या ददाति विनयम् ॥ • CBSE Affiliation No: 830680</span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
-              One Unified ERP for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-700">Every Indian School</span>
+              Sri Vivekananda <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700">Vidya Kendra</span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
-              Designed from the ground up for Indian institutions. Manage multi-campus trusts, diverse curriculum boards (CBSE, KSEAB, MSBSHSE, TNSB), millions of student records, automated UPI fee collection, and AI-powered classroom scheduling.
+            <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-amber-800">
+              Managed by Swamy Vivekananda Vidya Kendra Trust • Hoskote, Bengaluru Rural – 562114
+            </p>
+            <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+              Empowering students through values-driven, CBSE-aligned holistic education. Complete digital campus management for students, parents, faculty, and administrative excellence.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4 text-xs font-medium text-slate-600">
-              <span className="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
+              <span className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                Collision-Resistant Unique ID Engine
+                CBSE Curriculum & Evaluation
               </span>
-              <span className="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
+              <span className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                Strict Tenant Isolation
+                Live Attendance & SMS Alerts
               </span>
-              <span className="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
+              <span className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                Zero Dummy UI – Real Backend & DB
+                Verified Digital Records & TC
               </span>
             </div>
           </div>
@@ -285,13 +299,13 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="bg-white border-t border-slate-200 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div className="flex items-center gap-2">
-            <School className="w-4 h-4 text-blue-600" />
-            <span className="font-semibold text-slate-700">India Unified School ERP Platform</span>
-            <span>• Production-Ready Multi-Board Architecture</span>
+          <div className="flex items-center gap-2.5">
+            <img src="/images/svvk-logo.png" alt="SVVK" className="w-6 h-6 rounded-full object-contain" />
+            <span className="font-semibold text-slate-800">Sri Vivekananda Vidya Kendra</span>
+            <span>• Affiliated to CBSE, New Delhi – 830680</span>
           </div>
           <div>
-            <span>Version 1.0.0 • Digital Personal Data Protection (DPDP) Compliant</span>
+            <span>Managed by Swamy Vivekananda Vidya Kendra Trust • Hoskote, Bengaluru Rural – 562114</span>
           </div>
         </div>
       </footer>

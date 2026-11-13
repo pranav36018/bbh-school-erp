@@ -25,7 +25,7 @@ export default function PortalHeader({
   userName,
   userRole,
   userHumanId,
-  institutionName = "DPS Bengaluru North",
+  institutionName = "Sri Vivekananda Vidya Kendra",
   academicYear = "AY-2026-2027",
 }: PortalHeaderProps) {
   const router = useRouter();
@@ -45,11 +45,11 @@ export default function PortalHeader({
     <header className="sticky top-0 z-30 bg-white border-b border-slate-200 h-16 px-4 sm:px-6 flex items-center justify-between">
       {/* Left: Search & Institution Scope */}
       <div className="flex items-center gap-4">
-        <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-medium text-slate-700">
-          <Building className="w-3.5 h-3.5 text-blue-600" />
-          <span className="font-semibold">{institutionName}</span>
-          <span className="text-slate-400">•</span>
-          <span className="text-slate-500 font-mono text-[11px]">{academicYear}</span>
+        <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-50/60 border border-amber-200/80 text-xs font-medium text-slate-800">
+          <img src="/images/svvk-logo.png" alt="SVVK" className="w-5 h-5 rounded-full object-contain" />
+          <span className="font-bold text-slate-900">{institutionName}</span>
+          <span className="text-amber-300">•</span>
+          <span className="text-slate-600 font-mono text-[11px]">{academicYear}</span>
         </div>
 
         <div className="relative hidden lg:block w-64">
