@@ -3,18 +3,15 @@
 import React from "react";
 import PortalLayout from "@/components/layout/PortalLayout";
 import { QrCode, Shield, CheckCircle2, FileText, Download, Printer } from "lucide-react";
-import { IdEngine } from "@/lib/id-engine";
 
 export default function StudentProfilePage() {
-  const qrPayload = IdEngine.generateVerificationPayload("STU-INS000001-000001", "INS-IND-000001");
-
   return (
     <PortalLayout
       portal="student"
       userName="Aarav Kashyap"
       userRole="Student • Class 10-A"
       userHumanId="STU-INS000001-000001"
-      institutionName="DPS Bengaluru North"
+      institutionName="Sri Vivekananda Vidya Kendra"
       academicYear="AY-2026-2027"
     >
       <div>

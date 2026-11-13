@@ -184,15 +184,24 @@ export class IdEngine {
       id: entityId,
       inst: institutionCode,
       ts: Date.now(),
-      entropy: secretEntropy || crypto.randomBytes(8).toString("hex"),
+      entropy: secretEntropy || "svvk-token",
     });
 
-    const signature = crypto
-      .createHmac("sha256", process.env.JWT_SECRET || "erp-secret-key-2026")
-      .update(payload)
-      .digest("base64url");
+    try {
+      const signature = crypto
+        .createHmac("sha256", process.env.JWT_SECRET || "erp-secret-key-2026")
+        .update(payload)
+        .digest("hex");
 
-    return Buffer.from(JSON.stringify({ payload, signature })).toString("base64url");
+      const combined = JSON.stringify({ payload, signature });
+      return Buffer.from(combined)
+        .toString("base64")
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/, "");
+    } catch {
+      return "SVVK-" + entityId;
+    }
   }
 
   /**
@@ -200,19 +209,23 @@ export class IdEngine {
    */
   static verifyPayload(encodedData: string): { valid: boolean; data?: any } {
     try {
-      const raw = Buffer.from(encodedData, "base64url").toString("utf-8");
+      let base64 = encodedData.replace(/-/g, "+").replace(/_/g, "/");
+      while (base64.length % 4) {
+        base64 += "=";
+      }
+      const raw = Buffer.from(base64, "base64").toString("utf-8");
       const { payload, signature } = JSON.parse(raw);
 
       const expectedSignature = crypto
         .createHmac("sha256", process.env.JWT_SECRET || "erp-secret-key-2026")
         .update(payload)
-        .digest("base64url");
+        .digest("hex");
 
       if (signature !== expectedSignature) {
         return { valid: false };
       }
 
-      return { valid: true, data: JSON.parse(payload) };
+      return { valid: true, data: typeof payload === "string" ? JSON.parse(payload) : payload };
     } catch {
       return { valid: false };
     }
