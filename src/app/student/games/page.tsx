@@ -638,10 +638,10 @@ export default function StudentGamesPage() {
           })()}
 
           {/* Guess Tiles Board */}
-          <div className="flex flex-col items-center gap-2 max-w-sm mx-auto">
+          <div className="flex flex-col items-center gap-1.5 sm:gap-2 max-w-sm mx-auto overflow-x-auto p-1">
             {/* Previous Guesses */}
             {cipherGuesses.map((guess, gIdx) => (
-              <div key={gIdx} className="flex gap-2">
+              <div key={gIdx} className="flex gap-1.5 sm:gap-2">
                 {guess.split("").map((letter, lIdx) => {
                   let bgColor = "bg-slate-200 text-slate-700 border-slate-300";
                   if (currentCipher.word[lIdx] === letter) {
@@ -653,7 +653,7 @@ export default function StudentGamesPage() {
                   return (
                     <div
                       key={lIdx}
-                      className={`w-11 h-11 flex items-center justify-center font-black text-lg rounded-xl border-2 ${bgColor}`}
+                      className={`w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center font-black text-sm sm:text-lg rounded-lg sm:rounded-xl border-2 ${bgColor}`}
                     >
                       {letter}
                     </div>
@@ -664,11 +664,11 @@ export default function StudentGamesPage() {
 
             {/* Empty Slots Remaining */}
             {Array.from({ length: Math.max(0, 6 - cipherGuesses.length) }).map((_, emptyIdx) => (
-              <div key={emptyIdx} className="flex gap-2">
+              <div key={emptyIdx} className="flex gap-1.5 sm:gap-2">
                 {Array.from({ length: currentCipher.word.length }).map((__, colIdx) => (
                   <div
                     key={colIdx}
-                    className="w-11 h-11 flex items-center justify-center font-black text-lg rounded-xl border-2 border-dashed border-slate-200 text-slate-300"
+                    className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center font-black text-sm sm:text-lg rounded-lg sm:rounded-xl border-2 border-dashed border-slate-200 text-slate-300"
                   >
                     •
                   </div>
@@ -784,7 +784,7 @@ export default function StudentGamesPage() {
                     key={idx}
                     disabled={matrixState !== "PLAYING"}
                     onClick={() => handleTileClick(idx)}
-                    className={`w-16 h-16 rounded-xl border-2 transition-all flex items-center justify-center font-bold ${tileClass}`}
+                    className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl border-2 transition-all flex items-center justify-center font-bold ${tileClass}`}
                   >
                     {isFlashed && <Sparkles className="w-5 h-5 text-slate-950" />}
                     {matrixState === "RESULT" && tilesToMemorize.includes(idx) && <CheckCircle2 className="w-5 h-5 text-white" />}

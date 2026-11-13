@@ -106,36 +106,35 @@ export default function HomePage() {
 
       {/* Navigation */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3.5">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 sm:h-20 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
             <img
               src="/images/svvk-logo.png"
               alt="Sri Vivekananda Vidya Kendra Logo"
-              className="w-13 h-13 rounded-full object-contain border-2 border-amber-500/30 shadow-md bg-amber-50/50 shrink-0"
-              style={{ width: "52px", height: "52px" }}
+              className="w-10 h-10 sm:w-13 sm:h-13 rounded-full object-contain border-2 border-amber-500/30 shadow-md bg-amber-50/50 shrink-0"
             />
-            <div>
-              <span className="text-lg sm:text-xl font-black tracking-tight text-slate-900 block leading-tight">
+            <div className="min-w-0">
+              <span className="text-xs sm:text-lg lg:text-xl font-black tracking-tight text-slate-900 block leading-tight truncate">
                 SRI VIVEKANANDA VIDYA KENDRA
               </span>
-              <p className="text-[11px] text-slate-600 font-medium tracking-tight">
-                Affiliated to CBSE, New Delhi – 830680 • Hoskote, Bengaluru Rural
+              <p className="text-[10px] sm:text-[11px] text-slate-600 font-medium tracking-tight truncate">
+                Affiliated to CBSE, New Delhi – 830680 • Hoskote
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <Link
               href="/admin/login"
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-700 hover:text-amber-700 transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 hover:text-amber-700 transition-colors"
             >
               Admin Sign In
             </Link>
             <Link
               href="/student/login"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold shadow-sm transition-all shadow-amber-600/25"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs sm:text-sm font-semibold shadow-sm transition-all shadow-amber-600/25 shrink-0"
             >
               <span>Student Portal</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>

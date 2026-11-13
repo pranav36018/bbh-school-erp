@@ -10,6 +10,7 @@ import {
   ShieldCheck,
   Building,
   CheckCircle2,
+  Menu,
 } from "lucide-react";
 import { DEMO_ANNOUNCEMENTS } from "@/lib/mock-data";
 
@@ -19,6 +20,7 @@ interface PortalHeaderProps {
   userHumanId: string;
   institutionName?: string;
   academicYear?: string;
+  onToggleSidebar?: () => void;
 }
 
 export default function PortalHeader({
@@ -27,6 +29,7 @@ export default function PortalHeader({
   userHumanId,
   institutionName = "Sri Vivekananda Vidya Kendra",
   academicYear = "AY-2026-2027",
+  onToggleSidebar,
 }: PortalHeaderProps) {
   const router = useRouter();
   const [showNotifications, setShowNotifications] = useState(false);
@@ -42,9 +45,25 @@ export default function PortalHeader({
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-white border-b border-slate-200 h-16 px-4 sm:px-6 flex items-center justify-between">
-      {/* Left: Search & Institution Scope */}
-      <div className="flex items-center gap-4">
+    <header className="sticky top-0 z-30 bg-white border-b border-slate-200 h-16 px-3 sm:px-6 flex items-center justify-between">
+      {/* Left: Hamburger (mobile), Mobile Brand, & Institution Scope */}
+      <div className="flex items-center gap-2 sm:gap-4">
+        {onToggleSidebar && (
+          <button
+            type="button"
+            onClick={onToggleSidebar}
+            className="md:hidden p-2 -ml-1 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+            aria-label="Open Navigation Menu"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        )}
+
+        <div className="flex items-center gap-2 md:hidden">
+          <img src="/images/svvk-logo.png" alt="SVVK" className="w-7 h-7 rounded-full object-contain shrink-0" />
+          <span className="font-bold text-xs text-slate-900 truncate max-w-[150px]">SVVK</span>
+        </div>
+
         <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-50/60 border border-amber-200/80 text-xs font-medium text-slate-800">
           <img src="/images/svvk-logo.png" alt="SVVK" className="w-5 h-5 rounded-full object-contain" />
           <span className="font-bold text-slate-900">{institutionName}</span>

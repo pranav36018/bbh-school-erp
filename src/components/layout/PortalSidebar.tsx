@@ -35,14 +35,17 @@ import {
   BookMarked,
   Brain,
   Gamepad2,
+  X,
 } from "lucide-react";
 import { PortalType } from "@/lib/types";
 
 interface PortalSidebarProps {
   portal: PortalType;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-export default function PortalSidebar({ portal }: PortalSidebarProps) {
+export default function PortalSidebar({ portal, isOpen = false, onClose }: PortalSidebarProps) {
   const pathname = usePathname();
 
   const getNavItems = () => {
@@ -129,72 +132,139 @@ export default function PortalSidebar({ portal }: PortalSidebarProps) {
 
   const badge = getPortalBadge();
 
+  const renderNavList = (isMobile: boolean = false) => (
+    <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
+      {navItems.map((item) => {
+        const Icon = item.icon;
+        const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
+
+        return (
+          <Link
+            key={item.name}
+            href={item.href}
+            onClick={() => {
+              if (isMobile && onClose) onClose();
+            }}
+            className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all ${
+              isActive
+                ? "bg-blue-600 text-white font-semibold shadow-md shadow-blue-600/20"
+                : "text-slate-400 hover:text-white hover:bg-slate-800/60"
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-white" : "text-slate-400"}`} />
+              <span>{item.name}</span>
+            </div>
+            {item.badge && (
+              <span
+                className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
+                  isActive
+                    ? "bg-white/20 text-white"
+                    : "bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                }`}
+              >
+                {item.badge}
+              </span>
+            )}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+
   return (
-    <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 border-r border-slate-800 select-none">
-      {/* Brand Header */}
-      <div className="h-16 flex items-center gap-3 px-4 border-b border-slate-800">
-        <img
-          src="/images/svvk-logo.png"
-          alt="Sri Vivekananda Vidya Kendra"
-          className="w-10 h-10 rounded-full object-contain bg-amber-500/10 p-0.5 border border-amber-500/30 shrink-0"
-        />
-        <div className="overflow-hidden">
-          <span className="text-xs font-bold text-white tracking-tight block truncate">
-            SRI VIVEKANANDA
-          </span>
-          <div className="flex items-center gap-1.5">
-            <span className={`inline-block text-[9px] px-1.5 py-0.2 rounded font-semibold border ${badge.color}`}>
-              {badge.label}
+    <>
+      {/* 1. Desktop Permanent Sidebar */}
+      <aside className="hidden md:flex w-64 bg-slate-900 text-slate-300 flex-col shrink-0 border-r border-slate-800 select-none">
+        {/* Brand Header */}
+        <div className="h-16 flex items-center gap-3 px-4 border-b border-slate-800">
+          <img
+            src="/images/svvk-logo.png"
+            alt="Sri Vivekananda Vidya Kendra"
+            className="w-10 h-10 rounded-full object-contain bg-amber-500/10 p-0.5 border border-amber-500/30 shrink-0"
+          />
+          <div className="overflow-hidden">
+            <span className="text-xs font-bold text-white tracking-tight block truncate">
+              SRI VIVEKANANDA
             </span>
-            <span className="text-[9px] text-slate-400 font-mono">CBSE</span>
+            <div className="flex items-center gap-1.5">
+              <span className={`inline-block text-[9px] px-1.5 py-0.2 rounded font-semibold border ${badge.color}`}>
+                {badge.label}
+              </span>
+              <span className="text-[9px] text-slate-400 font-mono">CBSE</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Nav List */}
-      <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
+        {/* Nav List */}
+        {renderNavList(false)}
 
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all ${
-                isActive
-                  ? "bg-blue-600 text-white font-semibold shadow-md shadow-blue-600/20"
-                  : "text-slate-400 hover:text-white hover:bg-slate-800/60"
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-white" : "text-slate-400"}`} />
-                <span>{item.name}</span>
-              </div>
-              {item.badge && (
-                <span
-                  className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
-                    isActive
-                      ? "bg-white/20 text-white"
-                      : "bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                  }`}
-                >
-                  {item.badge}
-                </span>
-              )}
-            </Link>
-          );
-        })}
-      </nav>
-
-      {/* Footer Info */}
-      <div className="p-4 border-t border-slate-800 text-[11px] text-slate-500">
-        <div className="flex items-center gap-2 mb-1">
-          <Shield className="w-3.5 h-3.5 text-emerald-500" />
-          <span className="font-semibold text-slate-400">Tenant Isolation Active</span>
+        {/* Footer Info */}
+        <div className="p-4 border-t border-slate-800 text-[11px] text-slate-500">
+          <div className="flex items-center gap-2 mb-1">
+            <Shield className="w-3.5 h-3.5 text-emerald-500" />
+            <span className="font-semibold text-slate-400">Tenant Isolation Active</span>
+          </div>
+          <p className="text-[10px]">Session cryptographically locked to institution authority.</p>
         </div>
-        <p className="text-[10px]">Session cryptographically locked to institution authority.</p>
-      </div>
-    </aside>
+      </aside>
+
+      {/* 2. Mobile Responsive Drawer */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm md:hidden transition-opacity"
+          onClick={onClose}
+          aria-hidden="true"
+        />
+      )}
+
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-72 max-w-[85vw] bg-slate-900 text-slate-300 flex flex-col shadow-2xl transition-transform duration-300 ease-in-out md:hidden select-none ${
+          isOpen ? "translate-x-0" : "-translate-x-full pointer-events-none"
+        }`}
+      >
+        {/* Mobile Header with Close button */}
+        <div className="h-16 flex items-center justify-between px-4 border-b border-slate-800">
+          <div className="flex items-center gap-3 overflow-hidden">
+            <img
+              src="/images/svvk-logo.png"
+              alt="Sri Vivekananda Vidya Kendra"
+              className="w-9 h-9 rounded-full object-contain bg-amber-500/10 p-0.5 border border-amber-500/30 shrink-0"
+            />
+            <div className="overflow-hidden">
+              <span className="text-xs font-bold text-white tracking-tight block truncate">
+                SRI VIVEKANANDA
+              </span>
+              <div className="flex items-center gap-1.5">
+                <span className={`inline-block text-[9px] px-1.5 py-0.2 rounded font-semibold border ${badge.color}`}>
+                  {badge.label}
+                </span>
+                <span className="text-[9px] text-amber-400 font-mono">CBSE</span>
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            aria-label="Close navigation"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Mobile Nav List */}
+        {renderNavList(true)}
+
+        {/* Mobile Footer Info */}
+        <div className="p-3.5 border-t border-slate-800 text-[10px] text-slate-500">
+          <div className="flex items-center gap-1.5 mb-0.5">
+            <Shield className="w-3.5 h-3.5 text-emerald-500" />
+            <span className="font-semibold text-slate-400">Sri Vivekananda Vidya Kendra</span>
+          </div>
+          <p className="text-[9px]">Hoskote, Bengaluru Rural – 562114</p>
+        </div>
+      </aside>
+    </>
   );
 }
