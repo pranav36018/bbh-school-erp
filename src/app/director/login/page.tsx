@@ -8,8 +8,6 @@ export default function DirectorLoginPage() {
       subtitle="Multi-Institution Strategic Governance & Group Analytics"
       badge="Executive Login"
       themeColor="amber"
-      defaultEmail="director@indiaunifiederp.edu.in"
-      defaultPass="Director@2026"
     />
   );
 }

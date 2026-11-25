@@ -8,8 +8,6 @@ export default function TeacherLoginPage() {
       subtitle="Classroom Schedule, Attendance, Marks & AI Lesson Diary"
       badge="Faculty Login"
       themeColor="emerald"
-      defaultEmail="teacher.ananya@indiaunifiederp.edu.in"
-      defaultPass="Teacher@2026"
     />
   );
 }

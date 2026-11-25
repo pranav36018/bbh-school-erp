@@ -39,7 +39,7 @@ function LoginFormContent({
   badge,
   themeColor,
   defaultEmail: propDefaultEmail,
-  defaultPass = "Admin@2026",
+  defaultPass: propDefaultPass,
   board: initialBoardProp,
 }: LoginFormProps) {
   const router = useRouter();
@@ -73,32 +73,73 @@ function LoginFormContent({
         return {
           email: b === "state" ? "director.state@svvk.edu.in" : "director.cbse@svvk.edu.in",
           pass: "Director@2026",
+          roleLabel: "Executive Director & Managing Trustee",
         };
       case "admin":
         return {
           email: b === "state" ? "admin.state@svvk.edu.in" : "admin.cbse@svvk.edu.in",
           pass: "Admin@2026",
+          roleLabel: b === "state" ? "Headmaster & State Board Admin" : "Principal & CBSE Admin",
         };
       case "teacher":
         return {
           email: b === "state" ? "teacher.state@svvk.edu.in" : "teacher.cbse@svvk.edu.in",
           pass: "Teacher@2026",
+          roleLabel: b === "state" ? "Senior Faculty • State Board CCE" : "PGT Faculty • CBSE Division",
         };
       case "student":
         return {
           email: b === "state" ? "student.state@svvk.edu.in" : "student.cbse@svvk.edu.in",
           pass: "Student@2026",
+          roleLabel: b === "state" ? "Standard 8 Student • State Board" : "Class 10 Student • CBSE Board",
+        };
+    }
+  };
+
+  // Official Excel Roster credentials
+  const getRosterDemoCredentials = (p: PortalType) => {
+    switch (p) {
+      case "student":
+        return {
+          name: "Kaarshika V (Class 10)",
+          email: "student.kaarshika.030@svvk.demo",
+          pass: "Dolphin-Nectar-River-30",
+        };
+      case "teacher":
+        return {
+          name: "Arathi Baradi (Faculty)",
+          email: "arathi@svvk.demo",
+          pass: "River-Honey-Forest-34",
+        };
+      case "admin":
+        return {
+          name: "Anita Sanjiv (Admin/Clerk)",
+          email: "anita@svvk.demo",
+          pass: "Rocket-Marble-Anchor-36",
+        };
+      case "director":
+        return {
+          name: "Managing Trustee",
+          email: "director@svvk.demo",
+          pass: "Lion-Summit-Trust-88",
         };
     }
   };
 
   const currentDemo = getBoardDemoCredentials(activeBoard, portal);
+  const rosterDemo = getRosterDemoCredentials(portal);
   const effectiveEmail = propDefaultEmail || currentDemo.email;
-  const effectivePass = defaultPass || currentDemo.pass;
+  const effectivePass = propDefaultPass || currentDemo.pass;
 
   const fillDemo = () => {
     setEmail(effectiveEmail);
     setPassword(effectivePass);
+    setError(null);
+  };
+
+  const fillRoster = () => {
+    setEmail(rosterDemo.email);
+    setPassword(rosterDemo.pass);
     setError(null);
   };
 
@@ -266,19 +307,47 @@ function LoginFormContent({
           </div>
 
           {/* Demo Autofill Banner */}
-          <div className="mb-6 p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs">
-            <div className="min-w-0 pr-2">
-              <span className="font-semibold text-slate-700 block truncate">Quick Demo Access</span>
-              <span className="text-slate-500 text-[11px] font-mono truncate block">{effectiveEmail}</span>
+          <div className="mb-6 p-4 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 shadow-xs">
+            <div className="flex items-center justify-between gap-2 mb-2.5">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
+                <span className="font-bold text-slate-800 text-xs">Quick Demo Autofill</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300 truncate">
+                  {currentDemo.roleLabel}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={fillDemo}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold transition-all shadow-xs text-xs shrink-0 active:scale-95"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <span>Autofill</span>
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={fillDemo}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-white border border-slate-300 font-medium text-slate-700 hover:bg-slate-100 hover:border-slate-400 transition-all shadow-sm text-xs shrink-0"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-              <span>Autofill</span>
-            </button>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono bg-white p-2.5 rounded-xl border border-slate-200 mb-2">
+              <div className="truncate">
+                <span className="text-slate-400 block text-[10px] uppercase font-sans font-bold">Email:</span>
+                <span className="text-slate-800 font-semibold truncate block" title={effectiveEmail}>{effectiveEmail}</span>
+              </div>
+              <div className="truncate">
+                <span className="text-slate-400 block text-[10px] uppercase font-sans font-bold">Password:</span>
+                <span className="text-emerald-700 font-bold block" title={effectivePass}>{effectivePass}</span>
+              </div>
+            </div>
+
+            {/* Official Excel Roster Option */}
+            <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1.5 border-t border-slate-200">
+              <span className="truncate">Or Excel Roster: <strong className="text-slate-700">{rosterDemo.name}</strong></span>
+              <button
+                type="button"
+                onClick={fillRoster}
+                className="text-emerald-700 font-bold hover:underline shrink-0 ml-2"
+              >
+                Autofill Roster
+              </button>
+            </div>
           </div>
 
           {/* Error Alert */}
