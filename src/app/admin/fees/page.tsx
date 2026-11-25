@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import PortalLayout from "@/components/layout/PortalLayout";
 import { CreditCard, Plus, CheckCircle2, QrCode, Search, DollarSign, Printer } from "lucide-react";
 import { DEMO_STUDENTS } from "@/lib/mock-data";
+import { useBoard } from "@/lib/board-context";
 
 export default function AdminFeesPage() {
+  const { board } = useBoard();
+  const isState = board === "state";
   const [studentsList, setStudentsList] = useState(DEMO_STUDENTS);
   const [activeReceipt, setActiveReceipt] = useState<any | null>(null);
 
@@ -29,13 +32,17 @@ export default function AdminFeesPage() {
     }
   };
 
+  const adminName = isState ? "Shri Mahadevappa Kulkarni" : "Dr. Sunitha Radhakrishnan";
+  const adminRole = isState ? "Headmaster & State Board Admin" : "Principal & CBSE Admin";
+  const adminId = isState ? "ADM-STATE-000001" : "ADM-CBSE-000001";
+
   return (
     <PortalLayout
       portal="admin"
-      userName="Dr. Sunitha Radhakrishnan"
-      userRole="Principal & School Admin"
-      userHumanId="ADM-INS000001-000001"
-      institutionName="DPS Bengaluru North"
+      userName={adminName}
+      userRole={adminRole}
+      userHumanId={adminId}
+      institutionName={`Sri Vivekananda Vidya Kendra (${isState ? "State Board" : "CBSE"})`}
       academicYear="AY-2026-2027"
     >
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -60,7 +67,7 @@ export default function AdminFeesPage() {
         <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
           <span className="text-xs font-semibold text-slate-500 block mb-1">Integrated Payment Gateway</span>
           <span className="text-lg font-bold text-blue-700 block mt-1">UPI, RuPay, NetBanking</span>
-          <span className="text-[11px] text-slate-400 block mt-1">VPA: dpsnorthbengaluru@icici</span>
+          <span className="text-[11px] text-slate-400 block mt-1">VPA: {isState ? "svvk.state@sbi" : "svvk.cbse@icici"}</span>
         </div>
       </div>
 
@@ -130,9 +137,11 @@ export default function AdminFeesPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
           <div className="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200">
             <div className="text-center border-b pb-3 mb-3">
-              <span className="text-[10px] font-bold uppercase text-slate-400">DPS Bengaluru North</span>
-              <h3 className="text-base font-extrabold text-slate-900">Official Fee Receipt</h3>
-              <p className="text-xs font-mono text-blue-700 font-bold">{activeReceipt.receiptNo}</p>
+              <span className={`text-[10px] font-bold uppercase ${isState ? "text-emerald-700" : "text-blue-700"}`}>
+                {isState ? "Karnataka State Board (KSEAB) · Hoskote" : "CBSE Affil: 830680 · Hoskote"}
+              </span>
+              <h3 className="text-base font-extrabold text-slate-900">Sri Vivekananda Vidya Kendra</h3>
+              <p className="text-xs font-mono text-emerald-700 font-bold">{activeReceipt.receiptNo}</p>
             </div>
 
             <div className="space-y-2 text-xs text-slate-700 mb-4 bg-slate-50 p-3 rounded-xl border">

@@ -32,8 +32,10 @@ import {
   PhoneCall,
 } from "lucide-react";
 import { DEMO_STUDENTS } from "@/lib/mock-data";
+import { useBoard } from "@/lib/board-context";
 
 export default function StudentTransportPage() {
+  const { board, getBoardName, getSchoolName } = useBoard();
   const [selectedStudentIndex, setSelectedStudentIndex] = useState(0);
   const student = DEMO_STUDENTS[selectedStudentIndex];
   const transport = student.transport;
@@ -97,7 +99,7 @@ export default function StudentTransportPage() {
     },
     {
       stopNumber: 5,
-      name: "DPS Bengaluru North Campus Gate 2",
+      name: "Sri Vivekananda Vidya Kendra Hoskote Campus Gate 1",
       scheduledTime: "08:25 AM",
       status: "DESTINATION",
       isStudentStop: false,
@@ -108,9 +110,9 @@ export default function StudentTransportPage() {
     <PortalLayout
       portal="student"
       userName={student.fullName}
-      userRole={`Student • ${student.className}-${student.section}`}
+      userRole={`Student • ${student.className}-${student.section} (${getBoardName()})`}
       userHumanId={student.humanId}
-      institutionName="DPS Bengaluru North"
+      institutionName={`${getSchoolName()} (${getBoardName()})`}
       academicYear="AY-2026-2027"
     >
       {/* Header & Student Persona Switcher */}

@@ -22,8 +22,11 @@ import {
   QrCode,
 } from "lucide-react";
 import { DEMO_STUDENTS, DEMO_ANNOUNCEMENTS } from "@/lib/mock-data";
+import { useBoard } from "@/lib/board-context";
 
 export default function AdminDashboard() {
+  const { board } = useBoard();
+  const isState = board === "state";
   const [absenceAlertSent, setAbsenceAlertSent] = useState(false);
 
   const handleSendAbsenceAlerts = () => {
@@ -31,29 +34,43 @@ export default function AdminDashboard() {
     setTimeout(() => setAbsenceAlertSent(false), 5000);
   };
 
+  const adminName = isState ? "Shri Mahadevappa Kulkarni" : "Dr. Sunitha Radhakrishnan";
+  const adminRole = isState ? "Headmaster & State Board Administrator" : "Principal & CBSE Administrator";
+  const adminId = isState ? "ADM-STATE-000001" : "ADM-CBSE-000001";
+  const affiliationBadge = isState ? "Karnataka State Board (KSEAB)" : "CBSE Affiliation #830680";
+  const institutionCode = isState ? "INS-STATE-562114" : "INS-CBSE-562114";
+
   return (
     <PortalLayout
       portal="admin"
-      userName="Dr. Sunitha Radhakrishnan"
-      userRole="Principal & School Admin"
-      userHumanId="ADM-INS000001-000001"
-      institutionName="DPS Bengaluru North"
+      userName={adminName}
+      userRole={adminRole}
+      userHumanId={adminId}
+      institutionName={`Sri Vivekananda Vidya Kendra (${isState ? "State Board" : "CBSE"})`}
       academicYear="AY-2026-2027"
     >
       {/* Top Banner */}
       <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-              CBSE Affiliation #830123
+            <span
+              className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${
+                isState
+                  ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+                  : "bg-blue-50 text-blue-700 border-blue-200"
+              }`}
+            >
+              {affiliationBadge}
             </span>
-            <span className="text-xs text-slate-400 font-mono">INS-IND-000001</span>
+            <span className="text-xs text-slate-400 font-mono">{institutionCode}</span>
           </div>
           <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
-            Campus Operations Center
+            {isState ? "State Board Operations Center" : "CBSE Campus Operations Center"}
           </h1>
           <p className="text-xs text-slate-500 mt-1">
-            Real-time management of 2,450 enrolled students, 142 faculty members, and daily academic schedules.
+            {isState
+              ? "Comprehensive management of Karnataka State Board syllabus, CCE formative/summative records, and faculty rosters."
+              : "Real-time management of CBSE NCERT curriculum, annual board examinations, and student credentials."}
           </p>
         </div>
 

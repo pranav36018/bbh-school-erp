@@ -16,9 +16,12 @@ import {
   Sparkles,
 } from "lucide-react";
 import { DEMO_STUDENTS } from "@/lib/mock-data";
+import { useBoard } from "@/lib/board-context";
 
 export default function StudentDiaryPage() {
-  const student = DEMO_STUDENTS[0]; // Aarav Kashyap
+  const { board, getBoardName, getSchoolName } = useBoard();
+  const isState = board === "state";
+  const student = isState ? (DEMO_STUDENTS.find((s) => s.board === "state") || DEMO_STUDENTS[0]) : DEMO_STUDENTS[0];
 
   const [diaryItems, setDiaryItems] = useState([
     {
@@ -83,9 +86,9 @@ export default function StudentDiaryPage() {
     <PortalLayout
       portal="student"
       userName={student.fullName}
-      userRole={`Student • ${student.className}-${student.section}`}
+      userRole={`Student • ${student.className}-${student.section} (${getBoardName()})`}
       userHumanId={student.humanId}
-      institutionName="DPS Bengaluru North"
+      institutionName={`${getSchoolName()} (${getBoardName()})`}
       academicYear="AY-2026-2027"
     >
       {/* Top Banner */}

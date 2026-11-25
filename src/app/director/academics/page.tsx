@@ -14,7 +14,7 @@ export default function DirectorAcademicsPage() {
       userName="Dr. Rajesh Singhania"
       userRole="Managing Director & Trustee"
       userHumanId="DIR-INS000001-000001"
-      institutionName="DPS Bengaluru & Group Schools"
+      institutionName="Swamy Vivekananda Vidya Kendra Trust"
     >
       <div>
         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Academic Benchmarks & Multi-Board Analytics</h1>

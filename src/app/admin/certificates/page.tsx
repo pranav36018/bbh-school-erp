@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import PortalLayout from "@/components/layout/PortalLayout";
 import { FileCheck, Search, Printer, Download, Award, CheckCircle2, Shield, QrCode, FileText, ArrowRight, UserCheck } from "lucide-react";
 import { DEMO_STUDENTS } from "@/lib/mock-data";
+import { useBoard } from "@/lib/board-context";
 
 export default function AdminCertificatesPage() {
+  const { board } = useBoard();
+  const isState = board === "state";
   const [searchTerm, setSearchTerm] = useState("");
   const [certType, setCertType] = useState<"BONAFIDE" | "TC" | "CHARACTER">("BONAFIDE");
   const [selectedStudent, setSelectedStudent] = useState<any | null>(DEMO_STUDENTS[0] || null);
@@ -24,13 +27,17 @@ export default function AdminCertificatesPage() {
     window.print();
   };
 
+  const adminName = isState ? "Shri Mahadevappa Kulkarni" : "Dr. Sunitha Radhakrishnan";
+  const adminRole = isState ? "Headmaster & State Board Admin" : "Principal & CBSE Admin";
+  const adminId = isState ? "ADM-STATE-000001" : "ADM-CBSE-000001";
+
   return (
     <PortalLayout
       portal="admin"
-      userName="Dr. Sunitha Radhakrishnan"
-      userRole="Principal & School Admin"
-      userHumanId="ADM-INS000001-000001"
-      institutionName="DPS Bengaluru North"
+      userName={adminName}
+      userRole={adminRole}
+      userHumanId={adminId}
+      institutionName={`Sri Vivekananda Vidya Kendra (${isState ? "State Board" : "CBSE"})`}
       academicYear="AY-2026-2027"
     >
       {/* Header */}
@@ -258,7 +265,11 @@ export default function AdminCertificatesPage() {
                 <span className="text-[9px] font-bold text-amber-800">॥ विद्या ददाति विनयम् ॥</span>
                 <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-500 block">Swamy Vivekananda Vidya Kendra Trust</span>
                 <h3 className="font-extrabold text-sm text-slate-900">SRI VIVEKANANDA VIDYA KENDRA</h3>
-                <p className="text-[10px] text-slate-500">Affiliated to CBSE, New Delhi – 830680 • Hoskote, Bengaluru Rural – 562114</p>
+                <p className="text-[10px] text-slate-500">
+                  {isState
+                    ? "Karnataka State Board (KSEAB) • Hoskote, Bengaluru Rural – 562114"
+                    : "Affiliated to CBSE, New Delhi – 830680 • Hoskote, Bengaluru Rural – 562114"}
+                </p>
               </div>
 
               <div className="text-center py-1">

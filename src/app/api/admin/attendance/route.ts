@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     let alertsSent = 0;
     if (absentStudents && Array.isArray(absentStudents)) {
       for (const s of absentStudents) {
-        const msg = NotificationEngine.formatAbsenceMessage(s.name, date || "Today", schoolName || "DPS Bengaluru North");
+        const msg = NotificationEngine.formatAbsenceMessage(s.name, date || "Today", schoolName || "Sri Vivekananda Vidya Kendra");
         await NotificationEngine.dispatch({
           recipientPhone: s.phone || "+919845011001",
           recipientName: s.parentName || "Parent",

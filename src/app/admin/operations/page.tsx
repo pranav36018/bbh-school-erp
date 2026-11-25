@@ -3,8 +3,11 @@
 import React, { useState } from "react";
 import PortalLayout from "@/components/layout/PortalLayout";
 import { Bus, BookOpen, FileCheck, QrCode, Plus, CheckCircle2, MapPin, Printer } from "lucide-react";
+import { useBoard } from "@/lib/board-context";
 
 export default function AdminOperationsPage() {
+  const { board, getBoardName, getSchoolName } = useBoard();
+  const isState = board === "state";
   const [activeTab, setActiveTab] = useState<"transport" | "library" | "certificates">("transport");
   const [certModal, setCertModal] = useState(false);
   const [certGenerated, setCertGenerated] = useState<any | null>(null);
@@ -35,10 +38,10 @@ export default function AdminOperationsPage() {
   return (
     <PortalLayout
       portal="admin"
-      userName="Dr. Sunitha Radhakrishnan"
-      userRole="Principal & School Admin"
-      userHumanId="ADM-INS000001-000001"
-      institutionName="DPS Bengaluru North"
+      userName={isState ? "Sri H. N. Ramaswamy" : "Dr. Sunitha Radhakrishnan"}
+      userRole={`Principal & School Admin • ${getBoardName()}`}
+      userHumanId={isState ? "ADM-SVVK-STA-000001" : "ADM-INS000001-000001"}
+      institutionName={`${getSchoolName()} (${getBoardName()})`}
       academicYear="AY-2026-2027"
     >
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -139,7 +142,7 @@ export default function AdminOperationsPage() {
 
           {certGenerated ? (
             <div className="p-6 bg-slate-50 border border-slate-300 rounded-2xl max-w-lg mx-auto text-center">
-              <span className="text-[10px] font-bold uppercase text-slate-400">DPS Bengaluru North</span>
+              <span className="text-[10px] font-bold uppercase text-slate-500">{getSchoolName()} • {getBoardName()}</span>
               <h3 className="text-base font-bold text-slate-900 mt-1">{certGenerated.type}</h3>
               <p className="text-xs font-mono font-bold text-blue-700 mt-0.5">{certGenerated.certNo}</p>
               <p className="text-xs text-slate-600 my-4">

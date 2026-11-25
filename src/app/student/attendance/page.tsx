@@ -3,8 +3,17 @@
 import React from "react";
 import PortalLayout from "@/components/layout/PortalLayout";
 import { CheckSquare, Calendar, Award, CheckCircle2 } from "lucide-react";
+import { useBoard } from "@/lib/board-context";
 
 export default function StudentAttendancePage() {
+  const { board, getBoardName, getSchoolName } = useBoard();
+  const isState = board === "state";
+
+  const studentName = isState ? "Kiran Kumar S" : "Aarav Kashyap";
+  const studentRole = isState ? "Student • Standard 8-EM (KSEAB)" : "Student • Class 10-A (CBSE)";
+  const studentHumanId = isState ? "STU-SVVK-STA-000008" : "STU-SVVK-CBSE-000001";
+  const institutionName = `${getSchoolName()} (${getBoardName()})`;
+
   const months = [
     { month: "June 2026", workingDays: 22, present: 21, absent: 1, pct: "95.5%" },
     { month: "July 2026", workingDays: 24, present: 23, absent: 1, pct: "95.8%" },
@@ -17,16 +26,26 @@ export default function StudentAttendancePage() {
   return (
     <PortalLayout
       portal="student"
-      userName="Aarav Kashyap"
-      userRole="Student • Class 10-A"
-      userHumanId="STU-INS000001-000001"
-      institutionName="DPS Bengaluru North"
+      userName={studentName}
+      userRole={studentRole}
+      userHumanId={studentHumanId}
+      institutionName={institutionName}
       academicYear="AY-2026-2027"
     >
       <div>
+        <div className="flex items-center gap-2 mb-1">
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${
+            isState ? "bg-amber-100 text-amber-900 border border-amber-300" : "bg-sky-100 text-sky-900 border border-sky-300"
+          }`}>
+            {getBoardName()}
+          </span>
+          <span className="text-xs text-slate-500 font-medium">Biometric & RFID Verified</span>
+        </div>
         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Personal Attendance Tracker</h1>
         <p className="text-xs text-slate-500 mt-1">
-          Statutory requirement: Maintain minimum 75% attendance to qualify for CBSE Board Examinations.
+          {isState
+            ? "Statutory requirement: Maintain minimum 75% attendance to qualify for Karnataka State Board (KSEAB) CCE evaluation and annual examinations."
+            : "Statutory requirement: Maintain minimum 75% attendance to qualify for CBSE Board Examinations (Affiliation 830680)."}
         </p>
       </div>
 

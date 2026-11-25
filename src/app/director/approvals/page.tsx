@@ -9,7 +9,7 @@ export default function DirectorApprovalsPage() {
     {
       id: "app-1",
       title: "Physics & Robotics Lab Modernization (Equipment procurement)",
-      school: "DPS Bengaluru North",
+      school: "Sri Vivekananda Vidya Kendra (CBSE Campus)",
       amount: "₹4,50,000",
       type: "CAPEX",
       requestedBy: "Dr. Sunitha Radhakrishnan (Principal)",
@@ -18,19 +18,19 @@ export default function DirectorApprovalsPage() {
     {
       id: "app-2",
       title: "2 New School Bus Fleet Additions (GPS & Speed Governor Installed)",
-      school: "National Public School Mysuru",
+      school: "Sri Vivekananda Vidya Kendra (State Board Campus)",
       amount: "₹38,00,000",
       type: "TRANSPORT",
-      requestedBy: "Prof. Arvind Venkatesh (Principal)",
+      requestedBy: "Sri H. N. Ramaswamy (Principal)",
       status: "PENDING",
     },
     {
       id: "app-3",
       title: "Appointment: PGT Computer Science & Artificial Intelligence",
-      school: "Sahyadri Vidya Kendra Hubballi",
+      school: "Sri Vivekananda Vidya Kendra (Dual Board Central)",
       amount: "₹65,000 / month",
       type: "HR_APPOINTMENT",
-      requestedBy: "Shri Mahadevappa Kulkarni (Headmaster)",
+      requestedBy: "Board of Trustees (SVVK Trust)",
       status: "PENDING",
     },
   ]);
@@ -45,7 +45,7 @@ export default function DirectorApprovalsPage() {
       userName="Dr. Rajesh Singhania"
       userRole="Managing Director & Trustee"
       userHumanId="DIR-INS000001-000001"
-      institutionName="DPS Bengaluru & Group Schools"
+      institutionName="Swamy Vivekananda Vidya Kendra Trust"
     >
       <div>
         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Director Strategic Approval Center</h1>

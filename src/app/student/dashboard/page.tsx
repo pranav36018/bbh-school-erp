@@ -24,32 +24,45 @@ import {
   Gamepad2,
 } from "lucide-react";
 import { DEMO_TIMETABLE_TODAY, DEMO_ANNOUNCEMENTS, DEMO_STUDENTS } from "@/lib/mock-data";
+import { useBoard } from "@/lib/board-context";
 
 export default function StudentDashboard() {
-  const currentStudent = DEMO_STUDENTS[0]; // Aarav Kashyap
+  const { board } = useBoard();
+  const isState = board === "state";
+  const currentStudent = isState
+    ? DEMO_STUDENTS.find((s) => s.id === "stu-state-001") || DEMO_STUDENTS[0]
+    : DEMO_STUDENTS[1] || DEMO_STUDENTS[0];
   const transport = currentStudent.transport;
 
   return (
     <PortalLayout
       portal="student"
-      userName="Aarav Kashyap"
-      userRole="Student • Class 10-A"
-      userHumanId="STU-INS000001-000001"
-      institutionName="DPS Bengaluru North"
+      userName={currentStudent.fullName}
+      userRole={`Student • ${currentStudent.className}-${currentStudent.section}`}
+      userHumanId={currentStudent.humanId}
+      institutionName={`Sri Vivekananda Vidya Kendra (${isState ? "State Board" : "CBSE"})`}
       academicYear="AY-2026-2027"
     >
       {/* Personalized Welcome Banner */}
-      <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 text-white p-6 sm:p-8 rounded-3xl shadow-lg relative overflow-hidden">
+      <div
+        className={`text-white p-6 sm:p-8 rounded-3xl shadow-lg relative overflow-hidden ${
+          isState
+            ? "bg-gradient-to-r from-emerald-800 via-teal-700 to-slate-900"
+            : "bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800"
+        }`}
+      >
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-blue-100 border border-white/20">
-              Roll #12 • Section 10-A • CBSE
+            <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white border border-white/20">
+              Roll #{currentStudent.rollNumber} • Section {currentStudent.section} • {isState ? "Karnataka State Board (KSEAB)" : "CBSE Affil: 830680"}
             </span>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight mt-2">
-              Namaste, Aarav Kashyap!
+              Namaste, {currentStudent.fullName}!
             </h1>
-            <p className="text-blue-100 text-xs sm:text-sm mt-1 max-w-xl">
-              You are on track for CBSE Board preparation. Today you have 7 scheduled classes. Your attendance is in the top 5% of the grade.
+            <p className="text-slate-100 text-xs sm:text-sm mt-1 max-w-xl">
+              {isState
+                ? "You are on track for Karnataka State Board CCE evaluations. Today you have 7 scheduled classes with Kannada First Language."
+                : "You are on track for CBSE Board preparation. Today you have 7 scheduled classes. Your attendance is in the top 5% of the grade."}
             </p>
           </div>
 

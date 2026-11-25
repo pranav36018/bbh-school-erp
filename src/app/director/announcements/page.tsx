@@ -34,7 +34,7 @@ export default function DirectorAnnouncementsPage() {
       userName="Dr. Rajesh Singhania"
       userRole="Managing Director & Trustee"
       userHumanId="DIR-INS000001-000001"
-      institutionName="DPS Bengaluru & Group Schools"
+      institutionName="Swamy Vivekananda Vidya Kendra Trust"
     >
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>

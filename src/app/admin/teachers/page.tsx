@@ -5,6 +5,7 @@ import PortalLayout from "@/components/layout/PortalLayout";
 import { Briefcase, Plus, CheckCircle2, Phone, Mail, Award, Clock, Search, Filter, GraduationCap, Building2, ChevronLeft, ChevronRight, Users, Shield } from "lucide-react";
 import { IMPORTED_STAFF } from "@/lib/imported-staff";
 import { DEMO_USERS } from "@/lib/mock-data";
+import { ROSTER_TEACHERS } from "@/lib/school-roster";
 
 export default function AdminTeachersPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,8 +16,23 @@ export default function AdminTeachersPage() {
   const [name, setName] = useState("");
   const [subject, setSubject] = useState("");
 
-  // Merge base demo teachers with imported staff
+  // Merge official SVVK teachers from teachers.csv and staff
   const allStaffMembers = [
+    ...ROSTER_TEACHERS.map((t) => ({
+      id: t.id,
+      humanId: t.schoolId,
+      fullName: t.name,
+      role: t.designation || "Faculty",
+      department: t.designation?.includes("TGT") ? "Secondary (TGT)" : t.designation?.includes("PRT") ? "Primary (PRT)" : "Academics",
+      categoryLabel: "Official Faculty (SVVK)",
+      designation: t.designation || "Teacher",
+      qualification: "B.Ed / M.A / B.Sc",
+      dob: "1985-06-12",
+      phone: "+91 98450 12000",
+      email: t.email,
+      address: "Hoskote, Bengaluru Rural",
+      status: "Active Staff",
+    })),
     // Include the 148 imported staff from Staff_List.xlsx
     ...IMPORTED_STAFF.map((s) => ({
       id: s.id,

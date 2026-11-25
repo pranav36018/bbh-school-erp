@@ -5,33 +5,68 @@ import PortalLayout from "@/components/layout/PortalLayout";
 import { Award, Plus, CheckCircle2, FileText, QrCode, Lock, Printer } from "lucide-react";
 import { DEMO_STUDENTS } from "@/lib/mock-data";
 import { calculateBoardGrade } from "@/lib/board-engine";
+import { useBoard } from "@/lib/board-context";
 
 export default function AdminExaminationsPage() {
-  const [selectedExam, setSelectedExam] = useState("Periodic Assessment 2");
+  const { board } = useBoard();
+  const isState = board === "state";
+
+  const defaultExam = isState ? "Summative Assessment 1 (SA-1)" : "Periodic Assessment 2";
+  const [selectedExam, setSelectedExam] = useState(defaultExam);
   const [reportCardStudent, setReportCardStudent] = useState<any | null>(null);
 
-  const examSubjects = [
+  const stateExamSubjects = [
+    { name: "First Language: Kannada", max: 125, pass: 44 },
+    { name: "Second Language: English", max: 100, pass: 35 },
+    { name: "Third Language: Hindi", max: 100, pass: 35 },
+    { name: "Core Mathematics", max: 100, pass: 35 },
+    { name: "General Science", max: 100, pass: 35 },
+    { name: "Social Science", max: 100, pass: 35 },
+  ];
+
+  const cbseExamSubjects = [
     { name: "English Language & Lit", max: 100, pass: 33 },
     { name: "Mathematics Standard", max: 100, pass: 33 },
     { name: "Science (Theory & Lab)", max: 100, pass: 33 },
     { name: "Social Science", max: 100, pass: 33 },
-    { name: "Second Language (Kannada/Hindi)", max: 100, pass: 33 },
+    { name: "Second Language (Hindi/Sanskrit)", max: 100, pass: 33 },
   ];
+
+  const examSubjects = isState ? stateExamSubjects : cbseExamSubjects;
+
+  const adminName = isState ? "Shri Mahadevappa Kulkarni" : "Dr. Sunitha Radhakrishnan";
+  const adminRole = isState ? "Headmaster & State Board Admin" : "Principal & CBSE Admin";
+  const adminId = isState ? "ADM-STATE-000001" : "ADM-CBSE-000001";
 
   return (
     <PortalLayout
       portal="admin"
-      userName="Dr. Sunitha Radhakrishnan"
-      userRole="Principal & School Admin"
-      userHumanId="ADM-INS000001-000001"
-      institutionName="DPS Bengaluru North"
+      userName={adminName}
+      userRole={adminRole}
+      userHumanId={adminId}
+      institutionName={`Sri Vivekananda Vidya Kendra (${isState ? "State Board" : "CBSE"})`}
       academicYear="AY-2026-2027"
     >
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Examination & Assessment Engine</h1>
+          <div className="flex items-center gap-2 mb-1">
+            <span
+              className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                isState
+                  ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+                  : "bg-blue-50 text-blue-800 border-blue-300"
+              }`}
+            >
+              {isState ? "Karnataka State Board CCE Grading" : "CBSE Board Assessment Engine"}
+            </span>
+          </div>
+          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+            {isState ? "State Board CCE Examination & Marks Engine" : "CBSE Examination & Assessment Engine"}
+          </h1>
           <p className="text-xs text-slate-500 mt-1">
-            CBSE Continuous Assessment, automated 9-point grade calculation, and tamper-proof report cards.
+            {isState
+              ? "Karnataka KSEAB 6-subject CCE evaluation (625 Marks total, FA1-FA4 & SA1-SA2) with automated A+ distinction grading."
+              : "CBSE Continuous Assessment, automated 9-point grade calculation, and tamper-proof report cards."}
           </p>
         </div>
 
@@ -40,12 +75,25 @@ export default function AdminExaminationsPage() {
           <select
             value={selectedExam}
             onChange={(e) => setSelectedExam(e.target.value)}
-            className="p-2 border rounded-xl bg-white text-xs font-semibold text-slate-800"
+            className="p-2 border rounded-xl bg-white text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
           >
-            <option>Periodic Assessment 1</option>
-            <option>Periodic Assessment 2</option>
-            <option>Half-Yearly Summative Exam</option>
-            <option>Annual Board Mock Assessment</option>
+            {isState ? (
+              <>
+                <option>Formative Assessment 1 (FA-1)</option>
+                <option>Formative Assessment 2 (FA-2)</option>
+                <option>Summative Assessment 1 (SA-1 Mid-Term)</option>
+                <option>Formative Assessment 3 (FA-3)</option>
+                <option>Formative Assessment 4 (FA-4)</option>
+                <option>Summative Assessment 2 (SA-2 Annual Board)</option>
+              </>
+            ) : (
+              <>
+                <option>Periodic Assessment 1</option>
+                <option>Periodic Assessment 2</option>
+                <option>Half-Yearly Summative Exam</option>
+                <option>Annual Board Mock Assessment</option>
+              </>
+            )}
           </select>
         </div>
       </div>

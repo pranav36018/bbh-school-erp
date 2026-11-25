@@ -25,6 +25,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 import { DEMO_TIMETABLE_TODAY, DEMO_STUDENTS, DEMO_ANNOUNCEMENTS } from "@/lib/mock-data";
+import { useBoard } from "@/lib/board-context";
 
 const LiveBusMap = dynamic(() => import("@/components/transport/LiveBusMap"), {
   ssr: false,
@@ -37,31 +38,48 @@ const LiveBusMap = dynamic(() => import("@/components/transport/LiveBusMap"), {
 });
 
 export default function TeacherDashboard() {
+  const { board } = useBoard();
+  const isState = board === "state";
   const [showMap, setShowMap] = useState(false);
+
+  const teacherName = isState ? "Shri Ramesh Gowda" : "Ms. Ananya Sharma";
+  const teacherRole = isState
+    ? "Faculty • Kannada First Language & State CCE Evaluator"
+    : "Senior Mathematics Faculty & Class 10-A In-Charge";
+  const teacherId = isState ? "TCH-STATE-000001" : "TCH-CBSE-000001";
+  const teacherBadge = isState ? "Karnataka State Board (KSEAB)" : "CBSE Affil #830680";
 
   return (
     <PortalLayout
       portal="teacher"
-      userName="Ms. Ananya Sharma"
-      userRole="Senior Mathematics Faculty & Class 10-A In-Charge"
-      userHumanId="TCH-INS000001-000001"
-      institutionName="DPS Bengaluru North"
+      userName={teacherName}
+      userRole={teacherRole}
+      userHumanId={teacherId}
+      institutionName={`Sri Vivekananda Vidya Kendra (${isState ? "State Board" : "CBSE"})`}
       academicYear="AY-2026-2027"
     >
       {/* Top Banner */}
       <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-              Class 10-A Class Teacher
+            <span
+              className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${
+                isState
+                  ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+                  : "bg-blue-50 text-blue-700 border-blue-200"
+              }`}
+            >
+              {teacherBadge}
             </span>
-            <span className="text-xs text-slate-400 font-mono">TCH-INS000001-000001</span>
+            <span className="text-xs text-slate-400 font-mono">{teacherId}</span>
           </div>
           <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
-            Academic Classroom Console
+            {isState ? "State Board Faculty Console" : "CBSE Academic Classroom Console"}
           </h1>
           <p className="text-xs text-slate-500 mt-1">
-            Manage your daily teaching periods, evaluate student assignments, and plan syllabus units.
+            {isState
+              ? "Manage daily State Board periods, DSERT syllabus lesson plans, CCE formative marks entry, and Kannada literature diary."
+              : "Manage your daily teaching periods, evaluate CBSE student assignments, and plan NCERT syllabus units."}
           </p>
         </div>
 

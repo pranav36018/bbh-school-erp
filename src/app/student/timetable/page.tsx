@@ -4,22 +4,40 @@ import React from "react";
 import PortalLayout from "@/components/layout/PortalLayout";
 import { Calendar, Clock, MapPin } from "lucide-react";
 import { DEMO_TIMETABLE_TODAY } from "@/lib/mock-data";
+import { useBoard } from "@/lib/board-context";
 
 export default function StudentTimetablePage() {
+  const { board, getBoardName, getSchoolName } = useBoard();
+  const isState = board === "state";
+
+  const studentName = isState ? "Kiran Kumar S" : "Aarav Kashyap";
+  const studentRole = isState ? "Student • Standard 8-EM (KSEAB)" : "Student • Class 10-A (CBSE)";
+  const studentHumanId = isState ? "STU-SVVK-STA-000008" : "STU-SVVK-CBSE-000001";
+  const institutionName = `${getSchoolName()} (${getBoardName()})`;
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   return (
     <PortalLayout
       portal="student"
-      userName="Aarav Kashyap"
-      userRole="Student • Class 10-A"
-      userHumanId="STU-INS000001-000001"
-      institutionName="DPS Bengaluru North"
+      userName={studentName}
+      userRole={studentRole}
+      userHumanId={studentHumanId}
+      institutionName={institutionName}
       academicYear="AY-2026-2027"
     >
       <div>
+        <div className="flex items-center gap-2 mb-1">
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${
+            isState ? "bg-amber-100 text-amber-900 border border-amber-300" : "bg-sky-100 text-sky-900 border border-sky-300"
+          }`}>
+            {getBoardName()}
+          </span>
+          <span className="text-xs text-slate-500 font-medium">Academic Schedule</span>
+        </div>
         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Weekly Class Timetable</h1>
-        <p className="text-xs text-slate-500 mt-1">Class 10 - Section A • Room 101 • Main Campus.</p>
+        <p className="text-xs text-slate-500 mt-1">
+          {isState ? "Standard 8 - Section EM (English Medium) • Room 204 • Hoskote Campus." : "Class 10 - Section A • Room 101 • Hoskote Campus."}
+        </p>
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">

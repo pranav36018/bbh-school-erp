@@ -14,7 +14,7 @@ export default function DirectorInstitutionsPage() {
       userName="Dr. Rajesh Singhania"
       userRole="Managing Director & Trustee"
       userHumanId="DIR-INS000001-000001"
-      institutionName="DPS Bengaluru & Group Schools"
+      institutionName="Swamy Vivekananda Vidya Kendra Trust"
     >
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
@@ -91,7 +91,7 @@ export default function DirectorInstitutionsPage() {
               Enter school affiliation and regulatory information to generate a collision-free ID sequence.
             </p>
             <div className="space-y-3 text-xs">
-              <input type="text" placeholder="Institution Name (e.g. DPS Bengaluru South)" className="w-full px-3 py-2 border rounded-xl" />
+              <input type="text" placeholder="Institution Name (e.g. Sri Vivekananda Vidya Kendra - Branch 2)" className="w-full px-3 py-2 border rounded-xl" />
               <select className="w-full px-3 py-2 border rounded-xl bg-white">
                 <option>CBSE</option>
                 <option>Karnataka State Board (KSEAB)</option>

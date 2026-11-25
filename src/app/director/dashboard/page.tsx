@@ -38,8 +38,8 @@ export default function DirectorDashboard() {
       portal="director"
       userName="Dr. Rajesh Singhania"
       userRole="Managing Director & Trustee"
-      userHumanId="DIR-INS000001-000001"
-      institutionName="Delhi Public School Society & Group"
+      userHumanId="DIR-SVVK-000001"
+      institutionName="Swamy Vivekananda Vidya Kendra Trust"
       academicYear="AY-2026-2027"
     >
       {/* Top Banner & Filters */}
@@ -239,7 +239,7 @@ export default function DirectorDashboard() {
             <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
               <div>
                 <span className="font-bold text-slate-800 block">Physics & Robotics Lab Modernization</span>
-                <span className="text-[11px] text-slate-500">DPS Bengaluru North • ₹4,50,000</span>
+                <span className="text-[11px] text-slate-500">Sri Vivekananda Vidya Kendra (CBSE) • ₹4,50,000</span>
               </div>
               <div className="flex gap-2">
                 <button className="px-3 py-1.5 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700">

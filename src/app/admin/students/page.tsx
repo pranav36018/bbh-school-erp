@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import PortalLayout from "@/components/layout/PortalLayout";
 import { Users, Search, Plus, QrCode, ArrowRight, CheckCircle2, FileText, ArrowLeftRight, Sparkles, Filter, ChevronLeft, ChevronRight, Phone, Calendar } from "lucide-react";
 import { DEMO_STUDENTS } from "@/lib/mock-data";
+import { ROSTER_STUDENTS } from "@/lib/school-roster";
+import { useBoard } from "@/lib/board-context";
 
 export default function AdminStudentsPage() {
+  const { board } = useBoard();
+  const isState = board === "state";
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedClass, setSelectedClass] = useState<string>("ALL");
   const [selectedMedium, setSelectedMedium] = useState<string>("ALL");
@@ -16,10 +20,46 @@ export default function AdminStudentsPage() {
   const [promotionModal, setPromotionModal] = useState(false);
   const [promotedSuccess, setPromotedSuccess] = useState(false);
 
-  // Distinct classes for filter pills
-  const distinctClasses = ["ALL", "Class 10", "Class 9", "Class 8", "Class 7", "Class 6", "Class 5", "Class 4", "Class 3", "Class 2", "Class 1", "UKG", "LKG", "Play Home"];
+  // Map 592 official roster students from students.csv
+  const rosterMappedStudents = ROSTER_STUDENTS.map((rs, idx) => ({
+    id: rs.id,
+    humanId: rs.schoolId,
+    fullName: rs.name,
+    className: rs.className || "Standard 1",
+    section: rs.section || "A",
+    rollNumber: idx + 1,
+    admissionNo: rs.admNo || `ADM-${1000 + idx}`,
+    guardianName: "Parent / Guardian",
+    guardianPhone: "+91 98450 " + String(10000 + (idx % 89999)),
+    attendancePct: 92 + (idx % 7),
+    feeBalance: 0,
+    legacyUserName: rs.email,
+    dob: "2013-08-20",
+    board: "state",
+  }));
 
-  const filtered = DEMO_STUDENTS.filter((s: any) => {
+  const ALL_DISPLAY_STUDENTS = [...rosterMappedStudents, ...DEMO_STUDENTS];
+
+  // Distinct classes for filter pills
+  const distinctClasses = [
+    "ALL",
+    "Standard 10",
+    "Standard 9",
+    "Standard 8",
+    "Standard 7",
+    "Standard 6",
+    "Standard 5",
+    "Standard 4",
+    "Standard 3",
+    "Standard 2",
+    "Standard 1",
+    "UKG Kreedo",
+    "LKG Kreedo",
+    "Pre-KG Kreedo",
+    "Class 10",
+  ];
+
+  const filtered = ALL_DISPLAY_STUDENTS.filter((s: any) => {
     const matchesSearch =
       s.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       s.humanId.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -27,7 +67,10 @@ export default function AdminStudentsPage() {
       (s.guardianPhone && s.guardianPhone.includes(searchTerm)) ||
       (s.legacyUserName && s.legacyUserName.toLowerCase().includes(searchTerm.toLowerCase()));
 
-    const matchesClass = selectedClass === "ALL" || s.className === selectedClass;
+    const matchesClass =
+      selectedClass === "ALL" ||
+      s.className === selectedClass ||
+      s.className.startsWith(selectedClass);
 
     const matchesMedium =
       selectedMedium === "ALL" ||
@@ -41,9 +84,9 @@ export default function AdminStudentsPage() {
   const paginated = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   // Quick stats
-  const emCount = DEMO_STUDENTS.filter((s: any) => s.section === "EM").length;
-  const kmCount = DEMO_STUDENTS.filter((s: any) => s.section === "KM").length;
-  const highAttendanceCount = DEMO_STUDENTS.filter((s: any) => s.attendancePct >= 90).length;
+  const emCount = ALL_DISPLAY_STUDENTS.filter((s: any) => s.section === "EM").length;
+  const kmCount = ALL_DISPLAY_STUDENTS.filter((s: any) => s.section === "KM").length;
+  const highAttendanceCount = ALL_DISPLAY_STUDENTS.filter((s: any) => s.attendancePct >= 90).length;
 
   const handleBulkPromote = () => {
     setPromotedSuccess(true);
@@ -53,13 +96,17 @@ export default function AdminStudentsPage() {
     }, 2500);
   };
 
+  const adminName = isState ? "Shri Mahadevappa Kulkarni" : "Dr. Sunitha Radhakrishnan";
+  const adminRole = isState ? "Headmaster & State Board Admin" : "Principal & CBSE Admin";
+  const adminId = isState ? "ADM-STATE-000001" : "ADM-CBSE-000001";
+
   return (
     <PortalLayout
       portal="admin"
-      userName="Dr. Sunitha Radhakrishnan"
-      userRole="Principal & School Admin"
-      userHumanId="ADM-INS000001-000001"
-      institutionName="DPS Bengaluru North"
+      userName={adminName}
+      userRole={adminRole}
+      userHumanId={adminId}
+      institutionName={`Sri Vivekananda Vidya Kendra (${isState ? "State Board" : "CBSE"})`}
       academicYear="AY-2026-2027"
     >
       {/* Header */}
@@ -68,11 +115,11 @@ export default function AdminStudentsPage() {
           <div className="flex items-center gap-2">
             <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Student Central Registry</h1>
             <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 border border-blue-200">
-              {DEMO_STUDENTS.length} Students Loaded
+              {ALL_DISPLAY_STUDENTS.length} Students Loaded
             </span>
           </div>
           <p className="text-xs text-slate-500 mt-1">
-            Complete student directory imported from Admission_Students.csv with admission numbers, standards, and digital ID cards.
+            Complete student directory imported from students.csv with official registration IDs, standards, and digital ID cards.
           </p>
         </div>
 
@@ -91,7 +138,7 @@ export default function AdminStudentsPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Total Enrolled</span>
-          <span className="text-2xl font-extrabold text-slate-900 mt-1 block">{DEMO_STUDENTS.length}</span>
+          <span className="text-2xl font-extrabold text-slate-900 mt-1 block">{ALL_DISPLAY_STUDENTS.length}</span>
           <span className="text-[11px] text-emerald-600 font-semibold mt-1 block">100% Active Records</span>
         </div>
 
@@ -281,8 +328,10 @@ export default function AdminStudentsPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
           <div className="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200">
             <div className="text-center pb-3 border-b">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600">DPS Bengaluru North</span>
-              <h3 className="text-base font-extrabold text-slate-900">Student Identity Card</h3>
+              <span className={`text-[10px] font-bold uppercase tracking-wider ${isState ? "text-emerald-700" : "text-blue-700"}`}>
+                {isState ? "Karnataka State Board (KSEAB) · Hoskote" : "CBSE Affil: 830680 · Hoskote"}
+              </span>
+              <h3 className="text-base font-extrabold text-slate-900">Sri Vivekananda Vidya Kendra</h3>
             </div>
 
             <div className="my-5 flex flex-col items-center">

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   School,
   Building2,
@@ -36,8 +36,10 @@ import {
   Brain,
   Gamepad2,
   X,
+  Video,
 } from "lucide-react";
 import { PortalType } from "@/lib/types";
+import { useBoard } from "@/lib/board-context";
 
 interface PortalSidebarProps {
   portal: PortalType;
@@ -47,6 +49,9 @@ interface PortalSidebarProps {
 
 export default function PortalSidebar({ portal, isOpen = false, onClose }: PortalSidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
+  const boardContext = useBoard();
+  const isState = boardContext.board === "state";
 
   const getNavItems = () => {
     switch (portal) {
@@ -85,6 +90,7 @@ export default function PortalSidebar({ portal, isOpen = false, onClose }: Porta
       case "teacher":
         return [
           { name: "Teacher Dashboard", href: "/teacher/dashboard", icon: LayoutDashboard },
+          { name: "Video Lessons Hub", href: "/teacher/videos", icon: Video, badge: "YouTube" },
           { name: "School Bus & Transit", href: "/teacher/transport", icon: Bus, badge: "Live GPS" },
           { name: "Daily Class Diary", href: "/teacher/diary", icon: BookMarked, badge: "Today" },
           { name: "Mark Attendance", href: "/teacher/attendance", icon: CheckSquare },
@@ -99,10 +105,11 @@ export default function PortalSidebar({ portal, isOpen = false, onClose }: Porta
       case "student":
         return [
           { name: "Student Dashboard", href: "/student/dashboard", icon: LayoutDashboard },
+          { name: "Video Classroom", href: "/student/learn", icon: Video, badge: "YouTube" },
+          { name: "Mind Games & Logic", href: "/student/games", icon: Brain, badge: "5 Games" },
           { name: "Digital ID Card", href: "/student/profile", icon: QrCode },
           { name: "School Bus & GPS", href: "/student/transport", icon: Bus, badge: "Live GPS" },
           { name: "Daily Class Diary", href: "/student/diary", icon: BookMarked, badge: "Today" },
-          { name: "Mind Games & Logic", href: "/student/games", icon: Brain, badge: "3 Games" },
           { name: "Class Timetable", href: "/student/timetable", icon: Calendar },
           { name: "Attendance Records", href: "/student/attendance", icon: CheckSquare },
           { name: "Exam Results & Report", href: "/student/academics", icon: Award },
@@ -132,34 +139,54 @@ export default function PortalSidebar({ portal, isOpen = false, onClose }: Porta
 
   const badge = getPortalBadge();
 
+  // Resolve target link path preserving board scope if in URL
+  const resolveLinkHref = (baseHref: string) => {
+    if (pathname?.startsWith("/state/")) {
+      return `/state${baseHref}`;
+    }
+    if (pathname?.startsWith("/cbse/")) {
+      return `/cbse${baseHref}`;
+    }
+    return baseHref;
+  };
+
   const renderNavList = (isMobile: boolean = false) => (
     <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
       {navItems.map((item) => {
         const Icon = item.icon;
-        const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
+        const targetHref = resolveLinkHref(item.href);
+        const isActive =
+          pathname === targetHref ||
+          pathname === item.href ||
+          pathname?.startsWith(targetHref + "/") ||
+          pathname?.startsWith(item.href + "/");
 
         return (
           <Link
             key={item.name}
-            href={item.href}
+            href={targetHref}
             onClick={() => {
               if (isMobile && onClose) onClose();
             }}
             className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all ${
               isActive
-                ? "bg-blue-600 text-white font-semibold shadow-md shadow-blue-600/20"
+                ? isState
+                  ? "bg-emerald-600 text-white font-semibold shadow-md shadow-emerald-600/20"
+                  : "bg-blue-600 text-white font-semibold shadow-md shadow-blue-600/20"
                 : "text-slate-400 hover:text-white hover:bg-slate-800/60"
             }`}
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 min-w-0">
               <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-white" : "text-slate-400"}`} />
-              <span>{item.name}</span>
+              <span className="truncate">{item.name}</span>
             </div>
             {item.badge && (
               <span
-                className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
+                className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold shrink-0 ${
                   isActive
                     ? "bg-white/20 text-white"
+                    : isState
+                    ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
                     : "bg-blue-500/10 text-blue-400 border border-blue-500/20"
                 }`}
               >
@@ -178,20 +205,30 @@ export default function PortalSidebar({ portal, isOpen = false, onClose }: Porta
       <aside className="hidden md:flex w-64 bg-slate-900 text-slate-300 flex-col shrink-0 border-r border-slate-800 select-none">
         {/* Brand Header */}
         <div className="h-16 flex items-center gap-3 px-4 border-b border-slate-800">
-          <img
-            src="/images/svvk-logo.png"
-            alt="Sri Vivekananda Vidya Kendra"
-            className="w-10 h-10 rounded-full object-contain bg-amber-500/10 p-0.5 border border-amber-500/30 shrink-0"
-          />
+          <Link href="/" title="School Homepage">
+            <img
+              src="/images/svvk-logo.png"
+              alt="Sri Vivekananda Vidya Kendra"
+              className="w-10 h-10 rounded-full object-contain bg-amber-500/10 p-0.5 border border-amber-500/30 shrink-0"
+            />
+          </Link>
           <div className="overflow-hidden">
             <span className="text-xs font-bold text-white tracking-tight block truncate">
               SRI VIVEKANANDA
             </span>
             <div className="flex items-center gap-1.5">
-              <span className={`inline-block text-[9px] px-1.5 py-0.2 rounded font-semibold border ${badge.color}`}>
+              <span
+                className={`inline-block text-[9px] px-1.5 py-0.2 rounded font-semibold border ${badge.color}`}
+              >
                 {badge.label}
               </span>
-              <span className="text-[9px] text-slate-400 font-mono">CBSE</span>
+              <span
+                className={`text-[9px] font-bold px-1.5 py-0.2 rounded ${
+                  isState ? "bg-emerald-950 text-emerald-300" : "bg-blue-950 text-blue-300"
+                }`}
+              >
+                {isState ? "STATE" : "CBSE"}
+              </span>
             </div>
           </div>
         </div>
@@ -199,13 +236,19 @@ export default function PortalSidebar({ portal, isOpen = false, onClose }: Porta
         {/* Nav List */}
         {renderNavList(false)}
 
-        {/* Footer Info */}
-        <div className="p-4 border-t border-slate-800 text-[11px] text-slate-500">
-          <div className="flex items-center gap-2 mb-1">
-            <Shield className="w-3.5 h-3.5 text-emerald-500" />
-            <span className="font-semibold text-slate-400">Tenant Isolation Active</span>
+        {/* Footer Info & Switcher */}
+        <div className="p-4 border-t border-slate-800 text-[11px] text-slate-500 space-y-2">
+          <div className="flex items-center gap-2">
+            <Shield className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+            <span className="font-semibold text-slate-400 truncate">
+              {isState ? "Karnataka State Board" : "CBSE Affil: 830680"}
+            </span>
           </div>
-          <p className="text-[10px]">Session cryptographically locked to institution authority.</p>
+          <p className="text-[10px] text-slate-500">
+            {isState
+              ? "CCE Grading & State Syllabus Active."
+              : "NCERT & 9-Point CBSE Scale Active."}
+          </p>
         </div>
       </aside>
 
@@ -226,11 +269,13 @@ export default function PortalSidebar({ portal, isOpen = false, onClose }: Porta
         {/* Mobile Header with Close button */}
         <div className="h-16 flex items-center justify-between px-4 border-b border-slate-800">
           <div className="flex items-center gap-3 overflow-hidden">
-            <img
-              src="/images/svvk-logo.png"
-              alt="Sri Vivekananda Vidya Kendra"
-              className="w-9 h-9 rounded-full object-contain bg-amber-500/10 p-0.5 border border-amber-500/30 shrink-0"
-            />
+            <Link href="/" title="School Homepage">
+              <img
+                src="/images/svvk-logo.png"
+                alt="Sri Vivekananda Vidya Kendra"
+                className="w-9 h-9 rounded-full object-contain bg-amber-500/10 p-0.5 border border-amber-500/30 shrink-0"
+              />
+            </Link>
             <div className="overflow-hidden">
               <span className="text-xs font-bold text-white tracking-tight block truncate">
                 SRI VIVEKANANDA
@@ -239,7 +284,13 @@ export default function PortalSidebar({ portal, isOpen = false, onClose }: Porta
                 <span className={`inline-block text-[9px] px-1.5 py-0.2 rounded font-semibold border ${badge.color}`}>
                   {badge.label}
                 </span>
-                <span className="text-[9px] text-amber-400 font-mono">CBSE</span>
+                <span
+                  className={`text-[9px] font-bold px-1 rounded ${
+                    isState ? "bg-emerald-950 text-emerald-300" : "bg-blue-950 text-blue-300"
+                  }`}
+                >
+                  {isState ? "STATE" : "CBSE"}
+                </span>
               </div>
             </div>
           </div>
@@ -259,8 +310,10 @@ export default function PortalSidebar({ portal, isOpen = false, onClose }: Porta
         {/* Mobile Footer Info */}
         <div className="p-3.5 border-t border-slate-800 text-[10px] text-slate-500">
           <div className="flex items-center gap-1.5 mb-0.5">
-            <Shield className="w-3.5 h-3.5 text-emerald-500" />
-            <span className="font-semibold text-slate-400">Sri Vivekananda Vidya Kendra</span>
+            <Shield className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+            <span className="font-semibold text-slate-400">
+              {isState ? "Karnataka State Board" : "CBSE Board"}
+            </span>
           </div>
           <p className="text-[9px]">Hoskote, Bengaluru Rural – 562114</p>
         </div>

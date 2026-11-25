@@ -14,6 +14,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { DEMO_STUDENTS } from "@/lib/mock-data";
+import { useBoard } from "@/lib/board-context";
 
 interface CalendarEvent {
   id: string;
@@ -27,7 +28,9 @@ interface CalendarEvent {
 }
 
 export default function StudentCalendarPage() {
-  const student = DEMO_STUDENTS[0];
+  const { board, getBoardName, getSchoolName } = useBoard();
+  const isState = board === "state";
+  const student = isState ? (DEMO_STUDENTS.find((s) => s.board === "state") || DEMO_STUDENTS[0]) : DEMO_STUDENTS[0];
 
   const events: CalendarEvent[] = [
     {
@@ -83,9 +86,9 @@ export default function StudentCalendarPage() {
     <PortalLayout
       portal="student"
       userName={student.fullName}
-      userRole={`Student • ${student.className}-${student.section}`}
+      userRole={`Student • ${student.className}-${student.section} (${getBoardName()})`}
       userHumanId={student.humanId}
-      institutionName="DPS Bengaluru North"
+      institutionName={`${getSchoolName()} (${getBoardName()})`}
       academicYear="AY-2026-2027"
     >
       {/* Top Banner */}

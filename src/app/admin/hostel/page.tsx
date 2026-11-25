@@ -86,14 +86,14 @@ export default function AdminHostelPage() {
       name: "Mr. Chandrasekhar Reddy",
       wing: "Chief Warden (Aravalli Boys Wing)",
       phone: "+91 98450 66771",
-      email: "warden.boys@dpsnorth.edu.in",
+      email: "warden.boys@svvk.edu.in",
       dutyHours: "06:00 PM - 08:00 AM",
     },
     {
       name: "Mrs. Shobha Kulkarni",
       wing: "Senior Warden (Nilgiri Girls Wing)",
       phone: "+91 98450 66772",
-      email: "warden.girls@dpsnorth.edu.in",
+      email: "warden.girls@svvk.edu.in",
       dutyHours: "06:00 PM - 08:00 AM",
     },
   ];

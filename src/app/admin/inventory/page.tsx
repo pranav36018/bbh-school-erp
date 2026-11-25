@@ -82,8 +82,8 @@ export default function AdminInventoryPage() {
     },
     {
       id: "inv-004",
-      itemCode: "STN-DPS-DIARY-26",
-      name: "DPS Bengaluru North Annual Student Planner & Diary",
+      itemCode: "STN-SVVK-DIARY-26",
+      name: "Sri Vivekananda Vidya Kendra Annual Student Planner & Diary",
       category: "STATIONERY",
       currentStock: 8,
       minThreshold: 30,

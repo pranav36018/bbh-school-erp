@@ -2,6 +2,8 @@
 
 export type PortalType = "director" | "admin" | "teacher" | "student";
 
+export type BoardSlug = "state" | "cbse";
+
 export type RoleType =
   | "PLATFORM_OWNER"
   | "DIRECTOR"
@@ -23,6 +25,7 @@ export interface UserSessionPayload {
   campusId?: string | null;
   firstName: string;
   lastName: string;
+  board?: BoardSlug;
 }
 
 export interface BoardGradingRule {
