@@ -21,6 +21,7 @@ import {
   Tv,
   Loader2,
   Check,
+  Filter,
 } from "lucide-react";
 import {
   INITIAL_CLASSES,
@@ -41,6 +42,12 @@ export default function TeacherVideosPage() {
   const [selectedSubject, setSelectedSubject] = useState<string>("ALL");
   const [videos, setVideos] = useState<VideoLesson[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  // Main Page Class Category Filter
+  const [mainClassCategory, setMainClassCategory] = useState<string>("ALL");
+
+  // Modal Class Category Filter while adding video
+  const [modalClassCategory, setModalClassCategory] = useState<string>("ALL");
 
   // Modals
   const [activeVideo, setActiveVideo] = useState<VideoLesson | null>(null);
@@ -73,6 +80,28 @@ export default function TeacherVideosPage() {
   // Auto-detected original YouTube duration & status
   const [autoDuration, setAutoDuration] = useState<string | null>(null);
   const [isDetectingDuration, setIsDetectingDuration] = useState(false);
+
+  // Helper: Filter classes by category
+  const filterClassesByCategory = (category: string) => {
+    if (category === "High School") {
+      return ["Standard 10", "Standard 9", "Standard 8"];
+    }
+    if (category === "Primary") {
+      return [
+        "Standard 7",
+        "Standard 6",
+        "Standard 5",
+        "Standard 4",
+        "Standard 3",
+        "Standard 2",
+        "Standard 1",
+      ];
+    }
+    if (category === "Pre-Primary") {
+      return ["UKG", "LKG", "Pre-KG"];
+    }
+    return classes;
+  };
 
   // Load custom videos/subjects from localStorage
   const loadVideosFromStorage = () => {
@@ -135,7 +164,6 @@ export default function TeacherVideosPage() {
             const data = await res.json();
             if (data.success && data.duration && data.duration !== "Video") {
               setAutoDuration(data.duration);
-              // Auto-fill title if teacher hasn't entered one
               if (!newVidTitle && data.title) {
                 setNewVidTitle(data.title);
               }
@@ -157,6 +185,7 @@ export default function TeacherVideosPage() {
   }, [newVidUrl, newVidTitle]);
 
   const classSubjects = subjects.filter((s) => s.classLevel === selectedClass);
+  const modalAvailableSubjects = subjects.filter((s) => s.classLevel === newVidClass);
 
   const filteredVideos = videos.filter((v) => {
     const matchesClass = v.classLevel === selectedClass;
@@ -203,11 +232,8 @@ export default function TeacherVideosPage() {
     if (!newVidTitle.trim() || !newVidUrl.trim()) return;
 
     const ytId = extractYoutubeId(newVidUrl);
-    
-    // Use auto-detected duration directly or fallback
     let finalDuration = autoDuration || "Video";
 
-    // If duration not resolved yet, do a quick sync lookup
     if (finalDuration === "Video" || !autoDuration) {
       try {
         const res = await fetch(`/api/videos/info?url=${encodeURIComponent(newVidUrl)}`);
@@ -225,7 +251,7 @@ export default function TeacherVideosPage() {
     const newVideo: VideoLesson = {
       id: `vid-custom-${Date.now()}`,
       classLevel: newVidClass,
-      subject: newVidSubject || (classSubjects[0]?.name ?? "General"),
+      subject: newVidSubject || (modalAvailableSubjects[0]?.name ?? "General"),
       title: newVidTitle.trim(),
       youtubeId: ytId,
       duration: finalDuration,
@@ -299,7 +325,7 @@ export default function TeacherVideosPage() {
             Class-Wise Video Lesson Hub & Syllabus Management
           </h1>
           <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
-            Upload educational YouTube links (original video duration is auto-detected directly), create custom subjects, provide exam revision tips, and manage or delete video lectures for your students.
+            Upload educational YouTube links with automatic duration detection, organize by class and subject with visual filters, and manage video lessons for your students.
           </p>
         </div>
 
@@ -317,7 +343,8 @@ export default function TeacherVideosPage() {
           <button
             onClick={() => {
               setNewVidClass(selectedClass);
-              setNewVidSubject(classSubjects[0]?.name || "Mathematics");
+              const available = subjects.filter((s) => s.classLevel === selectedClass);
+              setNewVidSubject(available[0]?.name || "Mathematics");
               setAutoDuration(null);
               setShowAddVideoModal(true);
             }}
@@ -329,12 +356,31 @@ export default function TeacherVideosPage() {
         </div>
       </div>
 
-      {/* Class Level Selector Bar */}
+      {/* Class Level Selector Bar with Category Tabs */}
       <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
         <div className="flex items-center justify-between flex-wrap gap-2 border-b pb-2">
-          <span className="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
-            <GraduationCap className="w-4 h-4 text-emerald-600" /> Filter by Class:
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+              <GraduationCap className="w-4 h-4 text-emerald-600" /> Filter by Class:
+            </span>
+            {/* Quick Category Tabs */}
+            <div className="flex items-center gap-1 text-[11px]">
+              {["ALL", "High School", "Primary", "Pre-Primary"].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setMainClassCategory(cat)}
+                  className={`px-2.5 py-0.5 rounded-md font-bold transition-all ${
+                    mainClassCategory === cat
+                      ? "bg-slate-900 text-white shadow-xs"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="relative w-full sm:w-64">
             <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
@@ -347,8 +393,9 @@ export default function TeacherVideosPage() {
           </div>
         </div>
 
+        {/* Classes Horizontal Scroll */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
-          {classes.map((cls) => {
+          {filterClassesByCategory(mainClassCategory).map((cls) => {
             const isSelected = selectedClass === cls;
             return (
               <button
@@ -425,7 +472,8 @@ export default function TeacherVideosPage() {
           <button
             onClick={() => {
               setNewVidClass(selectedClass);
-              setNewVidSubject(classSubjects[0]?.name || "Mathematics");
+              const available = subjects.filter((s) => s.classLevel === selectedClass);
+              setNewVidSubject(available[0]?.name || "Mathematics");
               setAutoDuration(null);
               setShowAddVideoModal(true);
             }}
@@ -556,16 +604,32 @@ export default function TeacherVideosPage() {
             </div>
             <form onSubmit={handleAddSubject} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Target Class:</label>
-                <select
-                  value={newSubClass}
-                  onChange={(e) => setNewSubClass(e.target.value)}
-                  className="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-semibold"
-                >
-                  {classes.map((c) => (
-                    <option key={c} value={c}>{c}</option>
-                  ))}
-                </select>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="text-xs font-bold text-slate-700">Target Class:</label>
+                  <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                    Selected: {newSubClass}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 flex-wrap max-h-28 overflow-y-auto p-1.5 bg-slate-50 rounded-xl border border-slate-200 scrollbar-thin">
+                  {classes.map((c) => {
+                    const isSelected = newSubClass === c;
+                    return (
+                      <button
+                        key={c}
+                        type="button"
+                        onClick={() => setNewSubClass(c)}
+                        className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
+                          isSelected
+                            ? "bg-emerald-600 text-white shadow-xs"
+                            : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100"
+                        }`}
+                      >
+                        {isSelected && <Check className="w-3 h-3 text-white" />}
+                        <span>{c}</span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">Subject Name:</label>
@@ -598,10 +662,10 @@ export default function TeacherVideosPage() {
         </div>
       )}
 
-      {/* Upload Video Modal (DURATION INPUT REMOVED: AUTO-DETECTED DIRECTLY FROM YOUTUBE) */}
+      {/* Upload Video Modal WITH PROPER CLASS AND SUBJECT FILTERS */}
       {showAddVideoModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 max-h-[92vh] overflow-y-auto">
+          <div className="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl border border-slate-200 max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b mb-4">
               <div className="flex items-center gap-2">
                 <Youtube className="w-5 h-5 text-red-600 fill-current" />
@@ -612,40 +676,113 @@ export default function TeacherVideosPage() {
               </button>
             </div>
 
-            <form onSubmit={handleAddVideo} className="space-y-3.5 text-xs">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block font-bold text-slate-700 mb-1">Class:</label>
-                  <select
-                    value={newVidClass}
-                    onChange={(e) => {
-                      setNewVidClass(e.target.value);
-                      const available = subjects.filter((s) => s.classLevel === e.target.value);
-                      setNewVidSubject(available[0]?.name || "");
-                    }}
-                    className="w-full p-2.5 bg-slate-50 border rounded-xl font-semibold"
-                  >
-                    {classes.map((c) => (
-                      <option key={c} value={c}>{c}</option>
-                    ))}
-                  </select>
+            <form onSubmit={handleAddVideo} className="space-y-4 text-xs">
+              {/* 1. PROPER CLASS FILTER & SELECTOR (Pills like subject filter) */}
+              <div className="space-y-2 p-3 bg-slate-50 rounded-2xl border border-slate-200">
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <label className="font-bold text-slate-800 text-xs flex items-center gap-1.5">
+                    <GraduationCap className="w-4 h-4 text-emerald-600" />
+                    <span>Select Class:</span>
+                  </label>
+                  <span className="text-[11px] font-extrabold text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full border border-emerald-300">
+                    Selected: {newVidClass}
+                  </span>
                 </div>
-                <div>
-                  <label className="block font-bold text-slate-700 mb-1">Subject:</label>
-                  <select
-                    value={newVidSubject}
-                    onChange={(e) => setNewVidSubject(e.target.value)}
-                    className="w-full p-2.5 bg-slate-50 border rounded-xl font-semibold"
-                  >
-                    {subjects
-                      .filter((s) => s.classLevel === newVidClass)
-                      .map((s) => (
-                        <option key={s.id} value={s.name}>{s.name}</option>
-                      ))}
-                  </select>
+
+                {/* Class Category Filter Pills */}
+                <div className="flex items-center gap-1 text-[11px] overflow-x-auto pb-1">
+                  <span className="text-slate-400 font-bold text-[10px] uppercase mr-1">Section:</span>
+                  {["ALL", "High School", "Primary", "Pre-Primary"].map((cat) => (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setModalClassCategory(cat)}
+                      className={`px-2.5 py-0.5 rounded-lg font-bold transition-all whitespace-nowrap ${
+                        modalClassCategory === cat
+                          ? "bg-slate-900 text-white shadow-xs"
+                          : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-100"
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Class Filter Selection Buttons */}
+                <div className="flex items-center gap-1.5 flex-wrap max-h-28 overflow-y-auto p-1.5 bg-white rounded-xl border border-slate-200 scrollbar-thin">
+                  {filterClassesByCategory(modalClassCategory).map((cls) => {
+                    const isSelected = newVidClass === cls;
+                    return (
+                      <button
+                        key={cls}
+                        type="button"
+                        onClick={() => {
+                          setNewVidClass(cls);
+                          const available = subjects.filter((s) => s.classLevel === cls);
+                          setNewVidSubject(available[0]?.name || "");
+                        }}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                          isSelected
+                            ? "bg-emerald-600 text-white shadow-sm ring-2 ring-emerald-500"
+                            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                        }`}
+                      >
+                        {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+                        <span>{cls}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
+              {/* 2. PROPER SUBJECT FILTER & SELECTOR (Pills) */}
+              <div className="space-y-2 p-3 bg-slate-50 rounded-2xl border border-slate-200">
+                <div className="flex items-center justify-between">
+                  <label className="font-bold text-slate-800 text-xs flex items-center gap-1.5">
+                    <BookOpen className="w-4 h-4 text-indigo-600" />
+                    <span>Select Subject for {newVidClass}:</span>
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setNewSubClass(newVidClass);
+                      setShowAddSubjectModal(true);
+                    }}
+                    className="text-[11px] font-bold text-emerald-700 hover:underline flex items-center gap-0.5 bg-emerald-50 px-2 py-0.5 rounded-lg border border-emerald-200"
+                  >
+                    <Plus className="w-3 h-3" /> New Subject
+                  </button>
+                </div>
+
+                <div className="flex items-center gap-1.5 flex-wrap max-h-28 overflow-y-auto p-1.5 bg-white rounded-xl border border-slate-200 scrollbar-thin">
+                  {modalAvailableSubjects.length === 0 ? (
+                    <div className="p-3 text-center text-slate-400 text-xs w-full">
+                      No subjects found for {newVidClass}. Click &quot;New Subject&quot; above to create one.
+                    </div>
+                  ) : (
+                    modalAvailableSubjects.map((sub) => {
+                      const isSelected = newVidSubject === sub.name;
+                      return (
+                        <button
+                          key={sub.id}
+                          type="button"
+                          onClick={() => setNewVidSubject(sub.name)}
+                          className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                            isSelected
+                              ? "bg-indigo-600 text-white font-bold shadow-sm ring-2 ring-indigo-500"
+                              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                          }`}
+                        >
+                          {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+                          <span>{sub.name}</span>
+                        </button>
+                      );
+                    })
+                  )}
+                </div>
+              </div>
+
+              {/* 3. YOUTUBE LINK */}
               <div>
                 <label className="block font-bold text-slate-700 mb-1">YouTube Link or Video ID:</label>
                 <input
@@ -661,7 +798,7 @@ export default function TeacherVideosPage() {
                 </span>
               </div>
 
-              {/* Live Auto-Detected Duration Badge (No manual input needed!) */}
+              {/* Live Auto-Detected Duration Badge */}
               {isDetectingDuration && (
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-800 text-[11px] font-semibold animate-pulse">
                   <Loader2 className="w-3.5 h-3.5 animate-spin text-blue-600" />
@@ -675,6 +812,7 @@ export default function TeacherVideosPage() {
                 </div>
               )}
 
+              {/* 4. TITLE */}
               <div>
                 <label className="block font-bold text-slate-700 mb-1">Lesson Title:</label>
                 <input
@@ -687,6 +825,7 @@ export default function TeacherVideosPage() {
                 />
               </div>
 
+              {/* 5. INSTRUCTOR */}
               <div>
                 <label className="block font-bold text-slate-700 mb-1">Instructor / Faculty Name:</label>
                 <input
@@ -698,6 +837,7 @@ export default function TeacherVideosPage() {
                 />
               </div>
 
+              {/* 6. TOPICS */}
               <div>
                 <label className="block font-bold text-slate-700 mb-1">Key Topics Covered:</label>
                 <input
@@ -709,6 +849,7 @@ export default function TeacherVideosPage() {
                 />
               </div>
 
+              {/* 7. REVISION NOTES */}
               <div>
                 <label className="block font-bold text-slate-700 mb-1">Exam Revision Notes / Tips:</label>
                 <textarea
