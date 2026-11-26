@@ -11,7 +11,7 @@ import {
   School,
   CheckCircle2,
   CreditCard,
-  QrCode,
+  IdCard,
   FileCheck,
   Award,
   Calendar,
@@ -138,7 +138,7 @@ export default function UnifiedHomePage() {
               </span>
               <span className="flex items-center gap-1.5 bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                Live Attendance, SMS & Verified QR Credentials
+                Live Attendance, SMS &amp; Complete Student Records
               </span>
             </div>
           </div>
@@ -500,11 +500,11 @@ export default function UnifiedHomePage() {
 
             <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
               <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center mb-4">
-                <QrCode className="w-5 h-5" />
+                <IdCard className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-sm text-slate-900 mb-1">Digital IDs & Instant UPI</h3>
+              <h3 className="font-bold text-sm text-slate-900 mb-1">Scannable Student QR IDs &amp; History</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Tamper-proof HMAC-SHA256 QR digital identity cards, automated fee collection, and digital report cards.
+                Real scannable student QR identity cards with parent details, full academic progression, attendance &amp; fee history, automated UPI fees, and digital report cards.
               </p>
             </div>
           </div>

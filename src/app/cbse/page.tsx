@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import StudentQrCode from "@/components/students/StudentQrCode";
 import {
   GraduationCap,
   Building2,
@@ -11,7 +12,7 @@ import {
   School,
   CheckCircle2,
   CreditCard,
-  QrCode,
+  IdCard,
   FileCheck,
   Award,
   Layers,
@@ -77,7 +78,7 @@ export default function CBSEBoardHomePage() {
       badge: "Students & Guardians",
       icon: GraduationCap,
       features: [
-        "Digital ID Card with Live QR Verification",
+        "Complete Student ID Profile & Academic History",
         "Daily Timetable & Attendance Analytics",
         "Board Progress Reports & Marks Sheets",
         "Seamless UPI Fee Payments & Receipts",
@@ -307,12 +308,12 @@ export default function CBSEBoardHomePage() {
             {/* Sample CBSE Digital ID Card */}
             <div className="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-inner">
               <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center justify-between">
-                <span>Verified CBSE Student Credential</span>
-                <span className="text-blue-700 font-bold">HMAC-SHA256 Verified</span>
+                <span>Verified CBSE Student Identity &amp; History</span>
+                <span className="text-blue-700 font-bold">Active • AY-2026-2027</span>
               </div>
 
-              <div className="bg-white rounded-2xl border-2 border-blue-500/30 p-5 shadow-md">
-                <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
+              <div className="bg-white rounded-2xl border-2 border-blue-500/30 p-5 shadow-md space-y-4">
+                <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
                   <img
                     src="/images/svvk-logo.png"
                     alt="Logo"
@@ -328,26 +329,49 @@ export default function CBSEBoardHomePage() {
                   </div>
                 </div>
 
-                <div className="py-4 flex items-center justify-between gap-4">
+                <div className="flex items-center justify-between gap-4">
                   <div>
-                    <span className="text-xs font-bold text-slate-900 block">Aarav Kashyap</span>
-                    <span className="text-[11px] text-slate-500 block">Class 10 · Section A</span>
-                    <span className="text-[10px] font-mono text-slate-600 block mt-1">
-                      Admission No: CBSE-2026-0012
+                    <span className="text-sm font-bold text-slate-900 block">Aarav Kashyap</span>
+                    <span className="text-[11px] text-slate-600 block">Class 10 · Section A • Roll #12</span>
+                    <span className="text-[10px] font-mono text-slate-500 block mt-0.5">
+                      Admission No: CBSE-2026-0012 • DOB: 2010-04-14 • O+
                     </span>
-                    <span className="inline-block mt-2 px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">
-                      Overall Grade: A1 (Outstanding)
+                    <span className="inline-block mt-1.5 px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-blue-100 text-blue-800">
+                      Grade A1 (93.4%)
                     </span>
                   </div>
+                  <StudentQrCode
+                    studentId="stu-001"
+                    studentName="Aarav Kashyap"
+                    admissionNo="CBSE-2026-0012"
+                    variant="mini"
+                    size={64}
+                  />
+                </div>
 
-                  <div className="w-16 h-16 bg-slate-50 border rounded-xl flex items-center justify-center p-1 shrink-0">
-                    <QrCode className="w-14 h-14 text-slate-900" />
+                <div className="grid grid-cols-2 gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-100 text-[11px]">
+                  <div className="col-span-2 pb-1.5 border-b border-slate-200/70">
+                    <span className="text-[9px] uppercase font-bold text-blue-700 block">Parent / Guardian Details</span>
+                    <span className="font-semibold text-slate-900">Manish Kashyap (Father) • +91 98440 11001</span>
+                  </div>
+                  <div>
+                    <span className="text-[9px] uppercase font-bold text-slate-400 block">Attendance History</span>
+                    <span className="font-semibold text-emerald-700">94.5% (208/220 Days)</span>
+                  </div>
+                  <div>
+                    <span className="text-[9px] uppercase font-bold text-slate-400 block">Fee Ledger Status</span>
+                    <span className="font-semibold text-emerald-700">₹0 Dues (Term 1 &amp; 2 Paid)</span>
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
+                <div className="text-[10px] text-slate-600 bg-blue-50/50 p-2.5 rounded-lg border border-blue-100">
+                  <strong className="text-blue-900 block mb-0.5">Academic History:</strong>
+                  Class 8 (91.2% · A1) → Class 9 (92.8% · A1) → Class 10 Current (93.4%)
+                </div>
+
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
                   <span>Student ID: STU-CBSE-000012</span>
-                  <span>Blood Group: O+</span>
+                  <span>Bus #14 (Hebbal Route)</span>
                 </div>
               </div>
             </div>

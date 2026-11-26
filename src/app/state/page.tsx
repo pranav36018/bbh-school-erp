@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import StudentQrCode from "@/components/students/StudentQrCode";
 import {
   GraduationCap,
   Building2,
@@ -11,7 +12,7 @@ import {
   School,
   CheckCircle2,
   CreditCard,
-  QrCode,
+  IdCard,
   FileCheck,
   Award,
   Layers,
@@ -77,7 +78,7 @@ export default function StateBoardHomePage() {
       badge: "Students & Guardians",
       icon: GraduationCap,
       features: [
-        "Digital ID Card with Live QR Verification",
+        "Complete Student ID Profile & Academic History",
         "Daily Timetable & Attendance Analytics",
         "Board Progress Reports & Marks Sheets",
         "Seamless UPI Fee Payments & Receipts",
@@ -307,12 +308,12 @@ export default function StateBoardHomePage() {
             {/* Sample State Board Digital ID Card */}
             <div className="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-inner">
               <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center justify-between">
-                <span>Verified State Student Credential</span>
-                <span className="text-emerald-700 font-bold">HMAC-SHA256 Verified</span>
+                <span>Verified State Student Identity &amp; History</span>
+                <span className="text-emerald-700 font-bold">Active • AY-2026-2027</span>
               </div>
 
-              <div className="bg-white rounded-2xl border-2 border-emerald-500/30 p-5 shadow-md">
-                <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
+              <div className="bg-white rounded-2xl border-2 border-emerald-500/30 p-5 shadow-md space-y-4">
+                <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
                   <img
                     src="/images/svvk-logo.png"
                     alt="Logo"
@@ -328,26 +329,49 @@ export default function StateBoardHomePage() {
                   </div>
                 </div>
 
-                <div className="py-4 flex items-center justify-between gap-4">
+                <div className="flex items-center justify-between gap-4">
                   <div>
-                    <span className="text-xs font-bold text-slate-900 block">Kiran Kumar S</span>
-                    <span className="text-[11px] text-slate-500 block">Standard 8 · Section EM</span>
-                    <span className="text-[10px] font-mono text-slate-600 block mt-1">
-                      Admission No: SB-2026-0042
+                    <span className="text-sm font-bold text-slate-900 block">Kiran Kumar S</span>
+                    <span className="text-[11px] text-slate-600 block">Standard 8 · Section EM • Roll #8</span>
+                    <span className="text-[10px] font-mono text-slate-500 block mt-0.5">
+                      Admission No: SB-2026-0042 • DOB: 2012-05-18 • B+
                     </span>
-                    <span className="inline-block mt-2 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">
-                      Overall Grade: A+ (Distinction)
+                    <span className="inline-block mt-1.5 px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-emerald-100 text-emerald-800">
+                      Grade A+ (91.8%)
                     </span>
                   </div>
+                  <StudentQrCode
+                    studentId="stu-state-001"
+                    studentName="Kiran Kumar S"
+                    admissionNo="SB-2026-0042"
+                    variant="mini"
+                    size={64}
+                  />
+                </div>
 
-                  <div className="w-16 h-16 bg-slate-50 border rounded-xl flex items-center justify-center p-1 shrink-0">
-                    <QrCode className="w-14 h-14 text-slate-900" />
+                <div className="grid grid-cols-2 gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-100 text-[11px]">
+                  <div className="col-span-2 pb-1.5 border-b border-slate-200/70">
+                    <span className="text-[9px] uppercase font-bold text-emerald-700 block">Parent / Guardian Details</span>
+                    <span className="font-semibold text-slate-900">Suresh Kumar (Father) • +91 98451 22334</span>
+                  </div>
+                  <div>
+                    <span className="text-[9px] uppercase font-bold text-slate-400 block">Attendance History</span>
+                    <span className="font-semibold text-emerald-700">92.4% (198/215 Days)</span>
+                  </div>
+                  <div>
+                    <span className="text-[9px] uppercase font-bold text-slate-400 block">Fee Ledger Status</span>
+                    <span className="font-semibold text-emerald-700">₹0 Dues (Term 1 &amp; 2 Paid)</span>
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
+                <div className="text-[10px] text-slate-600 bg-emerald-50/50 p-2.5 rounded-lg border border-emerald-100">
+                  <strong className="text-emerald-900 block mb-0.5">Academic History:</strong>
+                  Standard 6 (88.5% · A) → Standard 7 (90.4% · A+) → Standard 8 Current (91.8%)
+                </div>
+
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
                   <span>Student ID: STU-STATE-000042</span>
-                  <span>Blood Group: B+</span>
+                  <span>Bus #01 (Hoskote Town)</span>
                 </div>
               </div>
             </div>

@@ -9,7 +9,7 @@ import {
   CheckSquare,
   Award,
   CreditCard,
-  QrCode,
+  IdCard,
   ArrowRight,
   BookOpen,
   CheckCircle2,
@@ -80,8 +80,8 @@ export default function StudentDashboard() {
               href="/student/profile"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-blue-900 font-bold text-xs shadow-md hover:bg-blue-50 transition-all"
             >
-              <QrCode className="w-4 h-4 text-blue-600" />
-              <span>Digital ID Card</span>
+              <IdCard className="w-4 h-4 text-blue-600" />
+              <span>Student ID &amp; History</span>
             </Link>
           </div>
         </div>

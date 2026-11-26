@@ -19,9 +19,10 @@ import {
   Sparkles,
   CheckCircle2,
   PhoneCall,
-  QrCode,
+  IdCard,
 } from "lucide-react";
 import { DEMO_STUDENTS, DEMO_ANNOUNCEMENTS } from "@/lib/mock-data";
+import StudentQrCode from "@/components/students/StudentQrCode";
 import { useBoard } from "@/lib/board-context";
 
 export default function AdminDashboard() {
@@ -284,7 +285,7 @@ export default function AdminDashboard() {
                 <th className="p-4">Guardian Contact</th>
                 <th className="p-4">Attendance</th>
                 <th className="p-4">Fee Status</th>
-                <th className="p-4">Digital ID</th>
+                <th className="p-4">Student Profile</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-slate-700">
@@ -320,10 +321,23 @@ export default function AdminDashboard() {
                     </span>
                   </td>
                   <td className="p-4">
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600">
-                      <QrCode className="w-3.5 h-3.5 text-blue-600" />
-                      <span>QR Active</span>
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <StudentQrCode
+                        studentId={stu.id}
+                        studentName={stu.fullName}
+                        admissionNo={stu.admissionNo}
+                        variant="mini"
+                        size={32}
+                      />
+                      <Link
+                        href={`/id/${encodeURIComponent(stu.id)}`}
+                        target="_blank"
+                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-700 hover:underline"
+                      >
+                        <IdCard className="w-3.5 h-3.5 text-blue-600" />
+                        <span>Full Record</span>
+                      </Link>
+                    </div>
                   </td>
                 </tr>
               ))}

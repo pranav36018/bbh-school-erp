@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import PortalLayout from "@/components/layout/PortalLayout";
-import { Users, Search, Plus, QrCode, ArrowRight, CheckCircle2, FileText, ArrowLeftRight, Sparkles, Filter, ChevronLeft, ChevronRight, Phone, Calendar } from "lucide-react";
+import { Users, Search, Plus, IdCard, ArrowRight, CheckCircle2, FileText, ArrowLeftRight, Sparkles, Filter, ChevronLeft, ChevronRight, Phone, Calendar } from "lucide-react";
 import { DEMO_STUDENTS } from "@/lib/mock-data";
-import { ROSTER_STUDENTS } from "@/lib/school-roster";
+import { getAllRegistryStudents, buildCompleteStudentProfile } from "@/lib/student-records";
+import StudentIdRecordView from "@/components/students/StudentIdRecordView";
+import StudentQrCode from "@/components/students/StudentQrCode";
 import { useBoard } from "@/lib/board-context";
 
 export default function AdminStudentsPage() {
@@ -20,25 +22,8 @@ export default function AdminStudentsPage() {
   const [promotionModal, setPromotionModal] = useState(false);
   const [promotedSuccess, setPromotedSuccess] = useState(false);
 
-  // Map 592 official roster students from students.csv
-  const rosterMappedStudents = ROSTER_STUDENTS.map((rs, idx) => ({
-    id: rs.id,
-    humanId: rs.schoolId,
-    fullName: rs.name,
-    className: rs.className || "Standard 1",
-    section: rs.section || "A",
-    rollNumber: idx + 1,
-    admissionNo: rs.admNo || `ADM-${1000 + idx}`,
-    guardianName: "Parent / Guardian",
-    guardianPhone: "+91 98450 " + String(10000 + (idx % 89999)),
-    attendancePct: 92 + (idx % 7),
-    feeBalance: 0,
-    legacyUserName: rs.email,
-    dob: "2013-08-20",
-    board: "state",
-  }));
-
-  const ALL_DISPLAY_STUDENTS = [...rosterMappedStudents, ...DEMO_STUDENTS];
+  // Unified list of 592 official roster students + demo/imported students with complete fields
+  const ALL_DISPLAY_STUDENTS = getAllRegistryStudents();
 
   // Distinct classes for filter pills
   const distinctClasses = [
@@ -279,13 +264,22 @@ export default function AdminStudentsPage() {
                     </span>
                   </td>
                   <td className="p-3.5 whitespace-nowrap">
-                    <button
-                      onClick={() => setSelectedStudentForId(stu)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold text-xs border border-blue-200 transition-all"
-                    >
-                      <QrCode className="w-3.5 h-3.5" />
-                      <span>View ID Card</span>
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <StudentQrCode
+                        studentId={stu.id}
+                        studentName={stu.fullName}
+                        admissionNo={stu.admissionNo}
+                        variant="mini"
+                        size={40}
+                      />
+                      <button
+                        onClick={() => setSelectedStudentForId(stu)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold text-xs border border-blue-200 transition-all"
+                      >
+                        <IdCard className="w-3.5 h-3.5" />
+                        <span>View ID &amp; History</span>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -323,67 +317,33 @@ export default function AdminStudentsPage() {
         </div>
       </div>
 
-      {/* Digital ID Card Modal */}
+      {/* Complete Student ID, Parent Details, Real QR Code & History Modal */}
       {selectedStudentForId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200">
-            <div className="text-center pb-3 border-b">
-              <span className={`text-[10px] font-bold uppercase tracking-wider ${isState ? "text-emerald-700" : "text-blue-700"}`}>
-                {isState ? "Karnataka State Board (KSEAB) · Hoskote" : "CBSE Affil: 830680 · Hoskote"}
-              </span>
-              <h3 className="text-base font-extrabold text-slate-900">Sri Vivekananda Vidya Kendra</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm">
+          <div className="bg-slate-50 rounded-3xl max-w-4xl w-full p-6 shadow-2xl border border-slate-200 max-h-[92vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-200">
+              <div>
+                <h3 className="text-base font-extrabold text-slate-900">
+                  Official Student Identity, Parent Details, Scannable QR &amp; History
+                </h3>
+                <p className="text-xs text-slate-500">
+                  Click QR to expand and scan directly with your phone camera for{" "}
+                  <strong>{selectedStudentForId.fullName}</strong> (Admission No: {selectedStudentForId.admissionNo})
+                </p>
+              </div>
+              <button
+                onClick={() => setSelectedStudentForId(null)}
+                className="px-3.5 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition-all"
+              >
+                Close Record
+              </button>
             </div>
 
-            <div className="my-5 flex flex-col items-center">
-              <div className="w-20 h-20 rounded-full bg-slate-100 border-2 border-blue-600 p-1 flex items-center justify-center font-bold text-2xl text-blue-800 mb-2">
-                {selectedStudentForId.fullName.charAt(0)}
-              </div>
-              <h4 className="font-bold text-slate-900 text-base">{selectedStudentForId.fullName}</h4>
-              <p className="text-xs font-mono font-bold text-blue-700">Admission No: {selectedStudentForId.admissionNo}</p>
-              <p className="text-xs text-slate-600 mt-1">
-                {selectedStudentForId.className} - {selectedStudentForId.section} • Roll #{selectedStudentForId.rollNumber}
-              </p>
-
-              {/* QR Code */}
-              <div className="mt-4 p-3 bg-slate-50 border rounded-xl flex flex-col items-center">
-                <QrCode className="w-20 h-20 text-slate-900" />
-                <span className="text-[9px] font-mono text-slate-400 mt-1">HMAC-SHA256 Encrypted Token</span>
-              </div>
-            </div>
-
-            <div className="space-y-1.5 text-xs text-slate-600 border-t pt-3 mb-5">
-              <div className="flex justify-between">
-                <span className="text-slate-400">Admission No:</span>
-                <span className="font-mono font-bold">{selectedStudentForId.admissionNo}</span>
-              </div>
-              {selectedStudentForId.admissionDate && (
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Admission Date:</span>
-                  <span>{selectedStudentForId.admissionDate}</span>
-                </div>
-              )}
-              <div className="flex justify-between">
-                <span className="text-slate-400">Parent Phone:</span>
-                <span className="font-mono">{selectedStudentForId.guardianPhone}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">Blood Group:</span>
-                <span>{selectedStudentForId.bloodGroup}</span>
-              </div>
-              {selectedStudentForId.legacyUserName && (
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Portal User ID:</span>
-                  <span className="font-mono">{selectedStudentForId.legacyUserName}</span>
-                </div>
-              )}
-            </div>
-
-            <button
-              onClick={() => setSelectedStudentForId(null)}
-              className="w-full py-2.5 bg-slate-900 text-white rounded-xl text-xs font-semibold hover:bg-slate-800 transition-all"
-            >
-              Close ID Card
-            </button>
+            <StudentIdRecordView
+              profile={buildCompleteStudentProfile(selectedStudentForId, board)}
+              compact={true}
+              onClose={() => setSelectedStudentForId(null)}
+            />
           </div>
         </div>
       )}
